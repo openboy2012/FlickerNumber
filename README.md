@@ -4,11 +4,11 @@ flicker number like alipay use UILabel category
 ##Effect 1
 ![](http://ipa-download.qiniudn.com/flicke a format number.gif)  
 ##Effect 2
-![](http://ipa-download.qiniudn.com/flicke a attribute number.gif)  
+![](http://ipa-download.qiniudn.com/flicker a attribute number.gif)  
 ##Effect 3
-![](http://ipa-download.qiniudn.com/flicke a float number.gif)  
+![](http://ipa-download.qiniudn.com/flicker a float number.gif)  
 ##Effect 4
-![](http://ipa-download.qiniudn.com/flicke a integer number.gif)  
+![](http://ipa-download.qiniudn.com/flicker a integer number.gif)  
 
 How to use
 ----
