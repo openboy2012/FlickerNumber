@@ -1,20 +1,29 @@
 # FlickerNumber
 flicker number like alipay use UILabel category
 
-# How to use
+How to use
+----
+1.pod search FlickerNumber.  
+2.clone the master then copy the files in Classes document to your project.  
+
 import the header 'UILabel+FlickerNumber.h'  
 you can use any category methods in initilized UILabel.you will see the the flicker number effect.  
 the category method support format string & attributed text; e.g. 'dd_setNumber:format:' & 'dd_setNumber:attributes:';  
 you can also control the flicker duration time; e.g. 'dd_setNumber:duration:'.  
 
-#中文解释
+中文解释
+====
 闪动的数字用UILabel的分类实现
 
-#如何使用
-导入头文件‘UILabel+FlickerNumber’  
-使用分类中的扩展方法以后你就可以看到闪动的数字了，类似支付宝的余额宝的闪动数字；  
+如何使用
+----
+1.用Pod搜索FlickerNumber。  
+2.克隆该项目master到本地，然后复制项目中的Classes的Category文件到你的项目中去。  
+
+导入头文件‘UILabel+FlickerNumber’；  
+使用分类中的扩展方法以后你就可以看到闪动的数字了，类似支付宝的余额宝的闪动数字。   
 本工具支持格式化数字显示和属性字符串处理，例如 “dd_setNumber:format:” 和 “dd_setNumber:attributes:”方法；  
-当然也可以控制闪动的持续时间，例如 “dd_setNumber:duration:”.  
+当然也可以控制闪动的持续时间，例如 “dd_setNumber:duration:”。  
 
 LICENSE(软件许可)
 ====
