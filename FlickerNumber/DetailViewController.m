@@ -27,9 +27,9 @@
     if([self.title isEqualToString:@"Flicker A Integer Number"]){
         [self.lblFlicker dd_setNumber:@(7654321)];
     }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-        [self.lblFlicker dd_setNumber:@(123.456)];
+        [self.lblFlicker dd_setNumber:@(123.982)];
     }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-        [self.lblFlicker dd_setNumber:@(123.45) format:@"￥%.2f"];
+        [self.lblFlicker dd_setNumber:@(75.212) format:@"￥%.2f"];
     }else if([self.title isEqualToString:@"Flicker A Attribute Number"]){
         id attributes = [NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
                                                      andRange:NSMakeRange(0, 1)];

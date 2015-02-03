@@ -88,7 +88,7 @@ static char flickerNumberKey;
     
     //get multiple if number is float & double type
     int multiple = [self multipleForNumber:number];
-    endNumber = multiple > 0 ? [number intValue] * multiple : [number intValue];
+    endNumber = multiple > 0 ? [number floatValue] * multiple : [number intValue];
     [userInfo setObject:@(multiple) forKey:MultipleKey];
     [userInfo setObject:@(endNumber) forKey:EndNumberKey];
     [userInfo setObject:@((endNumber * Frequency)/duration) forKey:RangeIntegerKey];
