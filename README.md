@@ -1,6 +1,12 @@
 # FlickerNumber
 flicker number like alipay use UILabel category
 
+##Effect
+![](http://ipa-download.qiniudn.com/flicke a format number.gif)  
+![](http://ipa-download.qiniudn.com/flicke a attribute number.gif)  
+![](http://ipa-download.qiniudn.com/flicke a float number.gif)  
+![](http://ipa-download.qiniudn.com/flicke a integer number.gif)  
+
 How to use
 ----
 1.pod search FlickerNumber.  
