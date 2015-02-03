@@ -19,7 +19,7 @@ you can also control the flicker duration time; e.g. 'dd_setNumber:duration:'.
 LICENSE(软件许可)
 ====
 
-Copyright (c) 2015 UILabel-FlickerNumber <dongjia_9251@126.com>
+Copyright (c) 2015 FlickerNumber <dongjia_9251@126.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
