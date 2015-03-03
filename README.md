@@ -1,19 +1,24 @@
 # FlickerNumber
 flicker number like alipay use UILabel category
 
-##Effect 1
-![](http://ipa-download.qiniudn.com/flicke a format number.gif)  
-##Effect 2
-![](http://ipa-download.qiniudn.com/flicker a attribute number.gif)  
-##Effect 3
-![](http://ipa-download.qiniudn.com/flicker a float number.gif)  
-##Effect 4
-![](http://ipa-download.qiniudn.com/flicker a integer number.gif)  
+##Effects
+<img src="http://ipa-download.qiniudn.com/flicke a format number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker a attribute number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker a float number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker a integer number.gif" width="276"/>
 
-How to use
-----
-1.pod search FlickerNumber.  
-2.clone the master then copy the files in Classes document to your project.  
+##installation
+
+[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/0.1/) [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/0.1)   
+FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
+it simply add the following line to your Podfile:
+
+    pod "FlickerNumber"
+Alternatively, you can just drag the files from `FlickerNumber / Classes` into your own project. 
+
+## Usage
+
+To run the example project; clone the repo, and run `pod install` from the Project directory first.
 
 import the header 'UILabel+FlickerNumber.h'  
 you can use any category methods in initilized UILabel.you will see the the flicker number effect.  
