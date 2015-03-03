@@ -7,7 +7,7 @@ flicker number like alipay use UILabel category
 <img src="http://ipa-download.qiniudn.com/flicker a float number.gif" width="276"/>
 <img src="http://ipa-download.qiniudn.com/flicker a integer number.gif" width="276"/>
 
-##installation
+##Installation
 
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/0.1/) [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/0.1)   
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
@@ -20,24 +20,62 @@ Alternatively, you can just drag the files from `FlickerNumber / Classes` into y
 
 To run the example project; clone the repo, and run `pod install` from the Project directory first.
 
-import the header 'UILabel+FlickerNumber.h'  
-you can use any category methods in initilized UILabel.you will see the the flicker number effect.  
-the category method support format string & attributed text; e.g. 'dd_setNumber:format:' & 'dd_setNumber:attributes:';  
-you can also control the flicker duration time; e.g. 'dd_setNumber:duration:'.  
+import `UILabel+FlickerNumber.h` in your project    
 
-中文解释
-====
-闪动的数字用UILabel的分类实现
+then you can use the category methods in any initilized UILabel to implement the effect of flicker number.
 
-如何使用
-----
-1.用Pod搜索FlickerNumber。  
-2.克隆该项目master到本地，然后复制项目中的Classes的Category文件到你的项目中去。  
+## Methods
 
-导入头文件‘UILabel+FlickerNumber’；  
-使用分类中的扩展方法以后你就可以看到闪动的数字了，类似支付宝的余额宝的闪动数字。   
-本工具支持格式化数字显示和属性字符串处理，例如 “dd_setNumber:format:” 和 “dd_setNumber:attributes:”方法；  
-当然也可以控制闪动的持续时间，例如 “dd_setNumber:duration:”。  
+`- (void)dd_setNumber:(NSNumber *)number; `  simple method
+
+`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration;` control flicker number duration time
+
+`- (void)dd_setNumber:(NSNumber *)number  format:(NSString *)formatStr; ` flicker number with string format
+
+
+/**
+ *  flicker number with attributes
+ *
+ *  @param number flicker number
+ *  @param attrs  text attributes
+ */
+- (void)dd_setNumber:(NSNumber *)number
+          attributes:(id)attrs;
+
+/**
+ *  flicker number with format in duration
+ *
+ *  @param number    flicker number
+ *  @param duration  duration time
+ *  @param formatStr format string
+ */
+- (void)dd_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(NSString *)formatStr;
+/**
+ *  flicker number with attribute in duration
+ *
+ *  @param number   flicker number
+ *  @param duration duration time
+ *  @param attrs    text attributes
+ */
+- (void)dd_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+          attributes:(id)attrs;
+
+/**
+ *  flicker number method
+ *
+ *  @param number   flicker number
+ *  @param duration duration time
+ *  @param format   format string
+ *  @param attri    text attribute
+ */
+- (void)dd_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(NSString *)formatStr
+          attributes:(id)attrs;
+
 
 LICENSE(软件许可)
 ====
