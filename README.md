@@ -2,7 +2,7 @@
 flicker number like alipay use UILabel category
 
 ##Effects
-<img src="http://ipa-download.qiniudn.com/flicke a format number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker a format number.gif" width="276"/>
 <img src="http://ipa-download.qiniudn.com/flicker an attribute number.gif" width="276"/>
 <img src="http://ipa-download.qiniudn.com/flicker a float number.gif" width="276"/>
 <img src="http://ipa-download.qiniudn.com/flicker an integer number.gif" width="276"/>
@@ -72,7 +72,7 @@ for example:
 ## Requirements
 
 - Xcode 6
-- iOS 5.1.1
+- iOS 6.0
 
 ## Author
 
