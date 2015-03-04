@@ -32,70 +32,24 @@ then you can use the category methods in any initilized UILabel to implement the
 
 `- (void)dd_setNumber:(NSNumber *)number  format:(NSString *)formatStr; ` flicker number with string format
 
+`- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs;` flicker number with attributes
 
-/**
- *  flicker number with attributes
- *
- *  @param number flicker number
- *  @param attrs  text attributes
- */
-- (void)dd_setNumber:(NSNumber *)number
-          attributes:(id)attrs;
+`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr;`
 
-/**
- *  flicker number with format in duration
- *
- *  @param number    flicker number
- *  @param duration  duration time
- *  @param formatStr format string
- */
-- (void)dd_setNumber:(NSNumber *)number
-            duration:(NSTimeInterval)duration
-              format:(NSString *)formatStr;
-/**
- *  flicker number with attribute in duration
- *
- *  @param number   flicker number
- *  @param duration duration time
- *  @param attrs    text attributes
- */
-- (void)dd_setNumber:(NSNumber *)number
-            duration:(NSTimeInterval)duration
-          attributes:(id)attrs;
+`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs; `
 
-/**
- *  flicker number method
- *
- *  @param number   flicker number
- *  @param duration duration time
- *  @param format   format string
- *  @param attri    text attribute
- */
-- (void)dd_setNumber:(NSNumber *)number
-            duration:(NSTimeInterval)duration
-              format:(NSString *)formatStr
-          attributes:(id)attrs;
+`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr attributes:(id)attrs;`
 
+## Requirements
 
-LICENSE(软件许可)
-====
+- Xcode 6
+- iOS 5.1.1
 
-Copyright (c) 2015 FlickerNumber <dongjia_9251@126.com>
+## Author
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+DeJohn Dong, dongjia_9251@126.com
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+## License
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+FlickerNumber is available under the MIT license. See the LICENSE file for more info.
+
