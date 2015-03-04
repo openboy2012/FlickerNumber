@@ -3,9 +3,10 @@ flicker number like alipay use UILabel category
 
 ##Effects
 <img src="http://ipa-download.qiniudn.com/flicke a format number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker a attribute number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker an attribute number.gif" width="276"/>
 <img src="http://ipa-download.qiniudn.com/flicker a float number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker a integer number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker an integer number.gif" width="276"/>
+<img src="http://ipa-download.qiniudn.com/flicker number.gif" width="276"/>
 
 ##Installation
 
