@@ -24,6 +24,34 @@ import `UILabel+FlickerNumber.h` in your project
 
 then you can use the category methods in any initilized UILabel to implement the effect of flicker number.
 
+for example:
+```
+@property (nonatomic, weak) IBOutlet UILabel *lblFlicker; //for a xib label
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    if([self.title isEqualToString:@"Flicker A Integer Number"]){
+        [self.lblFlicker dd_setNumber:@(7654321)];
+    }else if([self.title isEqualToString:@"Flicker A Float Number"]){
+        [self.lblFlicker dd_setNumber:@(123.982)];
+    }else if([self.title isEqualToString:@"Flicker A Format Number"]){
+        [self.lblFlicker dd_setNumber:@(75.212) format:@"￥%.2f"];
+    }else if([self.title isEqualToString:@"Flicker A Attribute Number"]){
+        id attributes = [NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
+                                                     andRange:NSMakeRange(0, 1)];
+        [self.lblFlicker dd_setNumber:@(123.45) attributes:attributes];
+    }else{
+        id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
+                                                       andRange:NSMakeRange(0, 1)],
+                          [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
+                                                       andRange:NSMakeRange(1, 3)]];
+        [self.lblFlicker dd_setNumber:@(123.45) duration:1.0f format:@"￥%.2f" attributes:attributes];
+    }
+}
+
+```
+
 ## Methods
 
 `- (void)dd_setNumber:(NSNumber *)number; `  simple method
