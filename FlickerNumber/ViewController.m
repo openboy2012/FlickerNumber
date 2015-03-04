@@ -21,10 +21,10 @@
     // Do any additional setup after loading the view, typically from a nib.
     if(!dataList)
         dataList = [[NSMutableArray alloc] init];
-    [dataList addObject:@"Flicker A Integer Number"];
+    [dataList addObject:@"Flicker An Integer Number"];
     [dataList addObject:@"Flicker A Float Number"];
     [dataList addObject:@"Flicker A Format Number"];
-    [dataList addObject:@"Flicker A Attribute Number"];
+    [dataList addObject:@"Flicker An Attribute Number"];
     [dataList addObject:@"Flicker Number All"];
 }
 

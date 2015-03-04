@@ -364,6 +364,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -374,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -432,6 +434,7 @@
 				8E19451E1A7E4138007AFF77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E19451F1A7E4138007AFF77 /* Build configuration list for PBXNativeTarget "FlickerNumberTests" */ = {
 			isa = XCConfigurationList;
@@ -440,6 +443,7 @@
 				8E1945211A7E4138007AFF77 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
