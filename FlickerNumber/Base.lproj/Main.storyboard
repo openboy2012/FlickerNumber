@@ -41,6 +41,7 @@
                     <navigationItem key="navigationItem" id="19H-yh-SqS"/>
                     <connections>
                         <outlet property="lblFlicker" destination="fC4-pl-J2T" id="Bof-gu-GcW"/>
+                        <outlet property="switchOn" destination="dfc-05-Nfs" id="5RE-KA-HSu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -14,6 +14,7 @@
 
 
 @property (nonatomic, weak) IBOutlet UILabel *lblFlicker;
+@property (nonatomic, weak) IBOutlet UISwitch *switchOn;
 
 @end
 
@@ -22,30 +23,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if([self.title isEqualToString:@"Flicker An Integer Number"]){
-        [self.lblFlicker dd_setNumber:@(1234567) formatter:nil];
-    }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-        [self.lblFlicker dd_setNumber:@(12345.789) formatter:nil];
-    }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-        [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%@" formatter:nil];
-    }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
-        id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                     andRange:NSMakeRange(0, 1)];
-        [self.lblFlicker dd_setNumber:@(1888.88) formatter:nil attributes:attributes];
-    }else{
-        id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
-                                                       andRange:NSMakeRange(0, 1)],
-                          [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                       andRange:NSMakeRange(1, 3)]];
-        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-        formatter.formatterBehavior = NSNumberFormatterBehavior10_4;
-        formatter.numberStyle = NSNumberFormatterDecimalStyle;
-        [self.lblFlicker dd_setNumber:@(1234.567) duration:1.0f format:@"￥%@" numberFormatter:formatter attributes:attributes];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [self valueChanged:self.switchOn];
 }
 
 - (void)didReceiveMemoryWarning {

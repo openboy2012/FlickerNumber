@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name     = 'FlickerNumber'
-s.version  = '0.1.1'
+s.version  = '0.2'
 s.license  = 'MIT'
 s.summary  = 'Flicker a number like alipay use UILabel category'
 s.homepage = 'https://github.com/openboy2012/FlickerNumber'
