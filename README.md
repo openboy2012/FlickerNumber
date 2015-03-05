@@ -67,7 +67,7 @@ for example:
 
 `- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs; `
 
-`- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter; `  simple method
+`- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter; `  flicker a number with NSNumberFormatter
 
 `- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter;` 
 
