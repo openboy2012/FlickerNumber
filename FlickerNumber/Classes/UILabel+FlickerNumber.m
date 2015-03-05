@@ -27,10 +27,12 @@
 @interface UILabel ()
 
 @property (nonatomic, strong) NSNumber *flickerNumber;
+@property (nonatomic, strong) NSNumberFormatter *flickerNumberFormatter;
 
 @end
 
 static char flickerNumberKey;
+static char flickerNumberFormatterKey;
 
 @implementation UILabel (FlickerNumber)
 
@@ -43,38 +45,92 @@ static char flickerNumberKey;
     return objc_getAssociatedObject(self, &flickerNumberKey);
 }
 
-#pragma mark - flicker methods
+- (void)setFlickerNumberFormatter:(NSNumberFormatter *)flickerNumberFormatter{
+    objc_setAssociatedObject(self, &flickerNumberFormatterKey, flickerNumberFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSNumberFormatter *)flickerNumberFormatter{
+    return objc_getAssociatedObject(self, &flickerNumberFormatterKey);
+}
+
+#pragma mark - flicker methods(public)
 
 - (void)dd_setNumber:(NSNumber *)number{
     [self dd_setNumber:number duration:1.0 format:nil attributes:nil];
 }
 
-- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs{
-    [self dd_setNumber:number duration:1.0 format:nil attributes:attrs];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration{
-    [self dd_setNumber:number duration:duration format:nil attributes:nil];
+- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:1.0 format:nil numberFormatter:formatter attributes:nil];
 }
 
 - (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr{
     [self dd_setNumber:number duration:1.0 format:formatStr attributes:nil];
 }
 
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs{
-    [self dd_setNumber:number duration:duration format:nil attributes:attrs];
+- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:1.0 format:formatStr numberFormatter:formatter attributes:nil];
+}
+
+- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs{
+    [self dd_setNumber:number duration:1.0 format:nil attributes:attrs];
+}
+
+
+- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:1.0 format:nil numberFormatter:formatter attributes:attrs];
 }
 
 - (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr{
     [self dd_setNumber:number duration:duration format:formatStr attributes:nil];
 }
 
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:duration format:formatStr numberFormatter:formatter attributes:nil];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration{
+    [self dd_setNumber:number duration:duration format:nil attributes:nil];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:duration format:nil numberFormatter:formatter attributes:nil];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs{
+    [self dd_setNumber:number duration:duration format:nil attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:duration format:formatStr formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
+    if(!formatter)
+        formatter = [self defaultFormatter];
+    [self dd_setNumber:number duration:duration format:nil numberFormatter:formatter attributes:attrs];
+}
+
 - (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr attributes:(id)attrs{
-    
-    if(![number isKindOfClass:[NSNumber class]]){
-        NSAssert(![number isKindOfClass:[NSNumber class]], @"number type is woring, exit");
-        return;
-    }
+    [self dd_setNumber:number duration:duration format:formatStr numberFormatter:nil attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
+    /**
+     *  check the number type
+     */
+    NSAssert([number isKindOfClass:[NSNumber class]], @"Number Type is not matched , exit");
     
     //initialize useinfo dict
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:0];
@@ -94,10 +150,14 @@ static char flickerNumberKey;
     [userInfo setObject:@((endNumber * Frequency)/duration) forKey:RangeIntegerKey];
     
     if(attrs)
-       [userInfo setObject:attrs forKey:AttributeKey];
+        [userInfo setObject:attrs forKey:AttributeKey];
+    
+    self.flickerNumberFormatter = nil;
+    if(formatter)
+        self.flickerNumberFormatter = formatter;
     
     if(formatStr)
-       [userInfo setObject:formatStr forKey:FormatKey];
+        [userInfo setObject:formatStr forKey:FormatKey];
 
     [NSTimer scheduledTimerWithTimeInterval:Frequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
 }
@@ -119,15 +179,15 @@ static char flickerNumberKey;
         return;
     }
     
-    NSString *formatStr = timer.userInfo[FormatKey]?:@"%.0f";
-    self.text = [NSString stringWithFormat:formatStr,[self.flickerNumber floatValue]];
-    
+    NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
+    self.text = [self finalString:@([self.flickerNumber integerValue]) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
     
     if([self.flickerNumber intValue] >= [timer.userInfo[EndNumberKey] intValue]){
-        self.text = [NSString stringWithFormat:formatStr,[timer.userInfo[ResultNumberKey] floatValue]];
+        self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
@@ -142,13 +202,13 @@ static char flickerNumberKey;
  *  @param multiple multiple
  */
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple{
-    NSString *formatStr = timer.userInfo[FormatKey]?:[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)];
-    self.text = [NSString stringWithFormat:formatStr,[self.flickerNumber floatValue]/multiple];
+    NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
+   self.text = [self finalString:@([self.flickerNumber floatValue]/multiple) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
     if([self.flickerNumber intValue] >= [timer.userInfo[EndNumberKey] intValue]){
-        self.text = [NSString stringWithFormat:formatStr,[timer.userInfo[ResultNumberKey] floatValue]];
+        self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
@@ -156,6 +216,11 @@ static char flickerNumberKey;
     }
 }
 
+/**
+ *  attributes string handle methods
+ *
+ *  @param attributes attributes variable
+ */
 - (void)attributedHandler:(id)attributes{
     if([attributes isKindOfClass:[NSDictionary class]]){
         NSRange range = [attributes[DictRangeKey] rangeValue];
@@ -168,6 +233,12 @@ static char flickerNumberKey;
     }
 }
 
+/**
+ *  attributes string result methods
+ *
+ *  @param attri attribute
+ *  @param range range
+ */
 - (void)addAttributes:(NSDictionary *)attri range:(NSRange)range{
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     // handler the out range exception
@@ -192,6 +263,33 @@ static char flickerNumberKey;
         return  length >= 6 ? pow(10, 6): pow(10, (int)length) ;
     }
     return 0;
+}
+
+- (NSString *)stringFromNumber:(NSNumber *)number numberFormatter:(NSNumberFormatter *)formattor{
+    if(!formattor){
+        formattor = [[NSNumberFormatter alloc] init];
+        formattor.formatterBehavior = NSNumberFormatterBehavior10_4;
+        formattor.numberStyle = NSNumberFormatterDecimalStyle;
+    }
+    return [formattor stringFromNumber:number];
+}
+
+- (NSString *)finalString:(NSNumber *)number stringFormat:(NSString *)formatStr andFormatter:(NSNumberFormatter *)formatter{
+    NSString *finalString = nil;
+    if(formatter){
+        finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
+    }else{
+        NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"string format type is not matched,please check your format type");
+        finalString = [NSString stringWithFormat:formatStr,[number floatValue]];
+    }
+    return finalString;
+}
+
+- (NSNumberFormatter *)defaultFormatter{
+    NSNumberFormatter *formattor = [[NSNumberFormatter alloc] init];
+    formattor.formatterBehavior = NSNumberFormatterBehavior10_4;
+    formattor.numberStyle = NSNumberFormatterDecimalStyle;
+    return formattor;
 }
 
 @end

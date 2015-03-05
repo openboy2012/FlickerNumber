@@ -16,6 +16,7 @@
 		8E1945191A7E4138007AFF77 /* FlickerNumberTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1945181A7E4138007AFF77 /* FlickerNumberTests.m */; };
 		8E19452C1A7E41E3007AFF77 /* UILabel+FlickerNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E19452B1A7E41E3007AFF77 /* UILabel+FlickerNumber.m */; };
 		8E19452F1A7E653D007AFF77 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E19452E1A7E653D007AFF77 /* DetailViewController.m */; };
+		8E4DB75E1AA692DD001B2206 /* FlickerNumber.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8E4DB75D1AA692DD001B2206 /* FlickerNumber.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		8E19452B1A7E41E3007AFF77 /* UILabel+FlickerNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+FlickerNumber.m"; sourceTree = "<group>"; };
 		8E19452D1A7E653D007AFF77 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		8E19452E1A7E653D007AFF77 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		8E4DB75D1AA692DD001B2206 /* FlickerNumber.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FlickerNumber.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 		8E1944F01A7E4138007AFF77 = {
 			isa = PBXGroup;
 			children = (
+				8E4DB75D1AA692DD001B2206 /* FlickerNumber.podspec */,
 				8E1944FB1A7E4138007AFF77 /* FlickerNumber */,
 				8E1945151A7E4138007AFF77 /* FlickerNumberTests */,
 				8E1944FA1A7E4138007AFF77 /* Products */,
@@ -219,6 +222,7 @@
 			files = (
 				8E1945081A7E4138007AFF77 /* Main.storyboard in Resources */,
 				8E19450D1A7E4138007AFF77 /* LaunchScreen.xib in Resources */,
+				8E4DB75E1AA692DD001B2206 /* FlickerNumber.podspec in Resources */,
 				8E19450A1A7E4138007AFF77 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,7 +368,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -375,7 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

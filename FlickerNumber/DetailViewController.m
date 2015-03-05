@@ -9,7 +9,9 @@
 #import "DetailViewController.h"
 #import "UILabel+FlickerNumber.h"
 
-@interface DetailViewController ()
+@interface DetailViewController (){
+}
+
 
 @property (nonatomic, weak) IBOutlet UILabel *lblFlicker;
 
@@ -20,27 +22,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     if([self.title isEqualToString:@"Flicker An Integer Number"]){
-        [self.lblFlicker dd_setNumber:@(7654321)];
+        [self.lblFlicker dd_setNumber:@(1234567) formatter:nil];
     }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-        [self.lblFlicker dd_setNumber:@(123.982)];
+        [self.lblFlicker dd_setNumber:@(12345.789) formatter:nil];
     }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-        [self.lblFlicker dd_setNumber:@(75.212) format:@"￥%.2f"];
+        [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%@" formatter:nil];
     }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
-        id attributes = [NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
+        id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                      andRange:NSMakeRange(0, 1)];
-        [self.lblFlicker dd_setNumber:@(123.45) attributes:attributes];
+        [self.lblFlicker dd_setNumber:@(1888.88) formatter:nil attributes:attributes];
     }else{
         id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
                                                        andRange:NSMakeRange(0, 1)],
                           [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                        andRange:NSMakeRange(1, 3)]];
-        [self.lblFlicker dd_setNumber:@(123.45) duration:1.0f format:@"￥%.2f" attributes:attributes];
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.formatterBehavior = NSNumberFormatterBehavior10_4;
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        [self.lblFlicker dd_setNumber:@(1234.567) duration:1.0f format:@"￥%@" numberFormatter:formatter attributes:attributes];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,5 +62,48 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)valueChanged:(id)sender{
+    if([(UISwitch *)sender isOn]){
+        if([self.title isEqualToString:@"Flicker An Integer Number"]){
+            [self.lblFlicker dd_setNumber:@(1234567) formatter:nil];
+        }else if([self.title isEqualToString:@"Flicker A Float Number"]){
+            [self.lblFlicker dd_setNumber:@(12345.789) formatter:nil];
+        }else if([self.title isEqualToString:@"Flicker A Format Number"]){
+            [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%@" formatter:nil];
+        }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
+            id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
+                                                         andRange:NSMakeRange(0, 1)];
+            [self.lblFlicker dd_setNumber:@(1888.88) formatter:nil attributes:attributes];
+        }else{
+            id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
+                                                           andRange:NSMakeRange(0, 1)],
+                              [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
+                                                           andRange:NSMakeRange(1, 3)]];
+            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+            formatter.formatterBehavior = NSNumberFormatterBehavior10_4;
+            formatter.numberStyle = NSNumberFormatterDecimalStyle;
+            [self.lblFlicker dd_setNumber:@(1234.567) duration:1.0f format:@"￥%@" numberFormatter:formatter attributes:attributes];
+        }
+    }else{
+        if([self.title isEqualToString:@"Flicker An Integer Number"]){
+            [self.lblFlicker dd_setNumber:@(1234567)];
+        }else if([self.title isEqualToString:@"Flicker A Float Number"]){
+            [self.lblFlicker dd_setNumber:@(12345.789)];
+        }else if([self.title isEqualToString:@"Flicker A Format Number"]){
+            [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%.3f"];
+        }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
+            id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
+                                                         andRange:NSMakeRange(0, 1)];
+            [self.lblFlicker dd_setNumber:@(1888.88) attributes:attributes];
+        }else{
+            id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
+                                                           andRange:NSMakeRange(0, 1)],
+                              [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
+                                                           andRange:NSMakeRange(1, 3)]];
+            [self.lblFlicker dd_setNumber:@(1234.567) duration:1.0f format:@"￥%.2f" attributes:attributes];
+        }
+    }
+}
 
 @end
