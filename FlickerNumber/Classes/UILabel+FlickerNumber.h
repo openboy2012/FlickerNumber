@@ -61,11 +61,11 @@ typedef enum : NSUInteger {
               format:(NSString *)formatStr;
 
 /**
- *  <#Description#>
+ *  flicker number with numberformatter style & format string
  *
- *  @param number    <#number description#>
- *  @param formatStr <#formatStr description#>
- *  @param formatter <#formatter description#>
+ *  @param number    flicker number
+ *  @param formatStr format string
+ *  @param formatter formatter style
  */
 - (void)dd_setNumber:(NSNumber *)number
               format:(NSString *)formatStr
@@ -82,11 +82,11 @@ typedef enum : NSUInteger {
           attributes:(id)attrs;
 
 /**
- *  <#Description#>
+ *  flicker number with attributes & formatter style
  *
- *  @param number    <#number description#>
- *  @param formatter <#formatter description#>
- *  @param attrs     <#attrs description#>
+ *  @param number    flicker number
+ *  @param formatter formatter style
+ *  @param attrs     text attributes
  */
 - (void)dd_setNumber:(NSNumber *)number
            formatter:(NSNumberFormatter *)formatter
@@ -104,12 +104,12 @@ typedef enum : NSUInteger {
               format:(NSString *)formatStr;
 
 /**
- *  <#Description#>
+ *  flicker number with format string & formatter style in duration
  *
- *  @param number    <#number description#>
- *  @param duration  <#duration description#>
- *  @param formatStr <#formatStr description#>
- *  @param formatter <#formatter description#>
+ *  @param number    flicker number
+ *  @param duration  duration time
+ *  @param formatStr format string
+ *  @param formatter formatter style
  */
 - (void)dd_setNumber:(NSNumber *)number
             duration:(NSTimeInterval)duration
@@ -127,12 +127,12 @@ typedef enum : NSUInteger {
           attributes:(id)attrs;
 
 /**
- *  <#Description#>
+ *  flicker number with attribute & formatter style in duration
  *
- *  @param number    <#number description#>
- *  @param duration  <#duration description#>
- *  @param formatter <#formatter description#>
- *  @param attrs     <#attrs description#>
+ *  @param number    flicker number
+ *  @param duration  duration time
+ *  @param formatter formatter style
+ *  @param attrs     text attributes
  */
 - (void)dd_setNumber:(NSNumber *)number
             duration:(NSTimeInterval)duration
