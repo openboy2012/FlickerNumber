@@ -52,7 +52,7 @@
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker dd_setNumber:@(12345.789) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-            [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%@" formatter:nil];
+            [self.lblFlicker dd_setNumber:@(5) format:@"￥%@" formatter:nil];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                          andRange:NSMakeRange(0, 1)];
@@ -73,7 +73,7 @@
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker dd_setNumber:@(12345.789)];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-            [self.lblFlicker dd_setNumber:@(6882.238) format:@"￥%.3f"];
+            [self.lblFlicker dd_setNumber:@(5) format:@"￥%.2f"];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                          andRange:NSMakeRange(0, 1)];

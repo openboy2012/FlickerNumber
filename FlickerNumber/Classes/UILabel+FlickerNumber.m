@@ -28,11 +28,13 @@
 
 @property (nonatomic, strong) NSNumber *flickerNumber;
 @property (nonatomic, strong) NSNumberFormatter *flickerNumberFormatter;
+@property (nonatomic, strong) NSTimer *currentTimer;
 
 @end
 
 static char flickerNumberKey;
 static char flickerNumberFormatterKey;
+static char flikcerNumberCurrentTimer;
 
 @implementation UILabel (FlickerNumber)
 
@@ -51,6 +53,14 @@ static char flickerNumberFormatterKey;
 
 - (NSNumberFormatter *)flickerNumberFormatter{
     return objc_getAssociatedObject(self, &flickerNumberFormatterKey);
+}
+
+- (void)setCurrentTimer:(NSTimer *)currentTimer{
+    objc_setAssociatedObject(self, &flikcerNumberCurrentTimer, currentTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSTimer *)currentTimer{
+    return objc_getAssociatedObject(self, &flikcerNumberCurrentTimer);
 }
 
 #pragma mark - flicker methods(public)
@@ -132,8 +142,15 @@ static char flickerNumberFormatterKey;
      */
     NSAssert([number isKindOfClass:[NSNumber class]], @"Number Type is not matched , exit");
     
+    [self.currentTimer invalidate];
+    self.currentTimer = nil;
+    
     //initialize useinfo dict
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:0];
+    
+    if(formatStr)
+        [userInfo setObject:formatStr forKey:FormatKey];
+    
     [userInfo setObject:number forKey:ResultNumberKey];
     
     //initialize variables
@@ -143,10 +160,13 @@ static char flickerNumberFormatterKey;
     int endNumber = 0;
     
     //get multiple if number is float & double type
-    int multiple = [self multipleForNumber:number];
+    int multiple = [self multipleForNumber:number formatString:formatStr];
     endNumber = multiple > 0 ? [number floatValue] * multiple : [number intValue];
     [userInfo setObject:@(multiple) forKey:MultipleKey];
     [userInfo setObject:@(endNumber) forKey:EndNumberKey];
+    if((endNumber * Frequency)/duration < 1){
+        duration = duration * 0.3;
+    }
     [userInfo setObject:@((endNumber * Frequency)/duration) forKey:RangeIntegerKey];
     
     if(attrs)
@@ -155,11 +175,8 @@ static char flickerNumberFormatterKey;
     self.flickerNumberFormatter = nil;
     if(formatter)
         self.flickerNumberFormatter = formatter;
-    
-    if(formatStr)
-        [userInfo setObject:formatStr forKey:FormatKey];
 
-    [NSTimer scheduledTimerWithTimeInterval:Frequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
+    self.currentTimer = [NSTimer scheduledTimerWithTimeInterval:Frequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
 }
 
 
@@ -255,12 +272,22 @@ static char flickerNumberFormatterKey;
  *
  *  @return mulitple
  */
-- (int)multipleForNumber:(NSNumber *)number{
+- (int)multipleForNumber:(NSNumber *)number formatString:(NSString *)formatStr{
+    if([formatStr rangeOfString:@"%@"].location == NSNotFound){
+        formatStr = [self regexNumberFormat:formatStr];
+        NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
+        if([formatNumberString rangeOfString:@"."].location != NSNotFound){
+            NSUInteger length = [[formatNumberString substringFromIndex:[formatNumberString rangeOfString:@"."].location +1] length];
+            float padding = log10f(length<6? length:6);
+            number = @([formatNumberString floatValue] + padding);
+        }
+    }
+    
     NSString *str = [NSString stringWithFormat:@"%@",number];
     if([str rangeOfString:@"."].location != NSNotFound){
         NSUInteger length = [[str substringFromIndex:[str rangeOfString:@"."].location +1] length];
         // Max Multiple is 6
-        return  length >= 6 ? pow(10, 6): pow(10, (int)length) ;
+        return  length >= 6 ? pow(10, 6): pow(10, (int)length);
     }
     return 0;
 }
@@ -290,6 +317,26 @@ static char flickerNumberFormatterKey;
     formattor.formatterBehavior = NSNumberFormatterBehavior10_4;
     formattor.numberStyle = NSNumberFormatterDecimalStyle;
     return formattor;
+}
+
+- (NSString *)regexNumberFormat:(NSString *)formatString{
+    NSError *regexError = nil;
+    NSRegularExpression *regex =
+    [NSRegularExpression regularExpressionWithPattern:@"^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
+                                              options:NSRegularExpressionCaseInsensitive
+                                                error:&regexError];
+    if (!regexError) {
+        NSTextCheckingResult *match = [regex firstMatchInString:formatString
+                                                        options:0
+                                                          range:NSMakeRange(0, [formatString length])];
+        if (match) {
+            NSString *result = [formatString substringWithRange:match.range];
+            return result;
+        }
+    } else {
+        NSLog(@"error - %@", regexError);
+    }
+    return @"%f";
 }
 
 @end
