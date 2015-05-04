@@ -177,6 +177,7 @@ static char flikcerNumberCurrentTimer;
         self.flickerNumberFormatter = formatter;
 
     self.currentTimer = [NSTimer scheduledTimerWithTimeInterval:Frequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:self.currentTimer forMode:NSRunLoopCommonModes];
 }
 
 
