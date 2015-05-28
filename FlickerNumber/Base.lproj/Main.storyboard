@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Agg-JH-ZIj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Agg-JH-ZIj">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Detail View Controller-->
@@ -17,26 +18,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="UILabel-FlickerNumber" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fC4-pl-J2T">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UILabel-FlickerNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fC4-pl-J2T">
                                 <rect key="frame" x="16" y="197" width="288" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NumberFormatter Enable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqy-wT-Hq1">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NumberFormatter Enable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqy-wT-Hq1">
                                 <rect key="frame" x="22" y="299" width="212" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfc-05-Nfs">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dfc-05-Nfs">
                                 <rect key="frame" x="228" y="294" width="51" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="HCp-aA-khY"/>
+                                    <constraint firstAttribute="height" constant="31" id="sxL-r2-iEX"/>
+                                </constraints>
                                 <connections>
                                     <action selector="valueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="rFX-4a-4si"/>
                                 </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fC4-pl-J2T" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="3lM-zF-scm"/>
+                            <constraint firstItem="fC4-pl-J2T" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="68y-bS-jcc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dfc-05-Nfs" secondAttribute="trailing" constant="27" id="8NG-S3-2L7"/>
+                            <constraint firstItem="xqy-wT-Hq1" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="6" id="bAG-Y6-HFp"/>
+                            <constraint firstItem="dfc-05-Nfs" firstAttribute="leading" secondItem="xqy-wT-Hq1" secondAttribute="trailing" constant="-6" id="bBs-Vr-0bS"/>
+                            <constraint firstItem="Nmh-o0-is8" firstAttribute="top" secondItem="dfc-05-Nfs" secondAttribute="bottom" constant="243" id="gb0-LB-Gvg"/>
+                            <constraint firstItem="xqy-wT-Hq1" firstAttribute="top" secondItem="fC4-pl-J2T" secondAttribute="bottom" constant="69" id="lVm-RY-Mfu"/>
+                            <constraint firstItem="fC4-pl-J2T" firstAttribute="top" secondItem="566-iV-mgU" secondAttribute="bottom" constant="133" id="sm3-hk-5pH"/>
+                            <constraint firstItem="dfc-05-Nfs" firstAttribute="top" secondItem="fC4-pl-J2T" secondAttribute="bottom" constant="64" id="wNO-mj-u4j"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="19H-yh-SqS"/>
                     <connections>

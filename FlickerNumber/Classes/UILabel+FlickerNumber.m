@@ -32,35 +32,31 @@
 
 @end
 
-static char flickerNumberKey;
-static char flickerNumberFormatterKey;
-static char flikcerNumberCurrentTimer;
-
 @implementation UILabel (FlickerNumber)
 
 #pragma mark - runtime methods
 - (void)setFlickerNumber:(NSNumber *)flickerNumber{
-    objc_setAssociatedObject(self, &flickerNumberKey, flickerNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(flickerNumber), flickerNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSNumber *)flickerNumber{
-    return objc_getAssociatedObject(self, &flickerNumberKey);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setFlickerNumberFormatter:(NSNumberFormatter *)flickerNumberFormatter{
-    objc_setAssociatedObject(self, &flickerNumberFormatterKey, flickerNumberFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(flickerNumberFormatter), flickerNumberFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSNumberFormatter *)flickerNumberFormatter{
-    return objc_getAssociatedObject(self, &flickerNumberFormatterKey);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 - (void)setCurrentTimer:(NSTimer *)currentTimer{
-    objc_setAssociatedObject(self, &flikcerNumberCurrentTimer, currentTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(currentTimer), currentTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (NSTimer *)currentTimer{
-    return objc_getAssociatedObject(self, &flikcerNumberCurrentTimer);
+    return objc_getAssociatedObject(self, _cmd);
 }
 
 #pragma mark - flicker methods(public)
@@ -141,6 +137,10 @@ static char flikcerNumberCurrentTimer;
      *  check the number type
      */
     NSAssert([number isKindOfClass:[NSNumber class]], @"Number Type is not matched , exit");
+    if(![number isKindOfClass:[NSNumber class]]){
+        self.text = [NSString stringWithFormat:@"%@",number];
+        return;
+    }
     
     [self.currentTimer invalidate];
     self.currentTimer = nil;
@@ -162,6 +162,13 @@ static char flikcerNumberCurrentTimer;
     //get multiple if number is float & double type
     int multiple = [self multipleForNumber:number formatString:formatStr];
     endNumber = multiple > 0 ? [number floatValue] * multiple : [number intValue];
+    
+    //check the number if out of bounds the unsigned int length
+    if(endNumber >= INT32_MAX){
+        self.text = [NSString stringWithFormat:@"%@",number];
+        return;
+    }
+    
     [userInfo setObject:@(multiple) forKey:MultipleKey];
     [userInfo setObject:@(endNumber) forKey:EndNumberKey];
     if((endNumber * Frequency)/duration < 1){
