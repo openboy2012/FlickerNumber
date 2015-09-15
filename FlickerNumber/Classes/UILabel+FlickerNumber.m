@@ -142,6 +142,9 @@
         return;
     }
     
+    //limit duration is postive number and it is large than 0.3
+    duration = fabs(duration) < 0.3 ? 0.3 : fabs(duration);
+    
     [self.currentTimer invalidate];
     self.currentTimer = nil;
     
@@ -154,17 +157,17 @@
     [userInfo setObject:number forKey:ResultNumberKey];
     
     //initialize variables
-    int beginNumber = 0;
+    long long beginNumber = 0;
     [userInfo setObject:@(beginNumber) forKey:BeginNumberKey];
     self.flickerNumber = @(0);
-    int endNumber = 0;
+    long long endNumber = 0;
     
     //get multiple if number is float & double type
     int multiple = [self multipleForNumber:number formatString:formatStr];
-    endNumber = multiple > 0 ? [number floatValue] * multiple : [number intValue];
+    endNumber = multiple > 0 ? [number doubleValue] * multiple : [number longLongValue];
     
     //check the number if out of bounds the unsigned int length
-    if(endNumber >= INT32_MAX){
+    if(endNumber >= INT64_MAX){
         self.text = [NSString stringWithFormat:@"%@",number];
         return;
     }
@@ -195,8 +198,8 @@
  *  @param timer schedule timer
  */
 - (void)flickerAnimation:(NSTimer *)timer{
-    float rangeInteger = [timer.userInfo[RangeIntegerKey] floatValue];
-    self.flickerNumber = @([self.flickerNumber floatValue] + rangeInteger);
+    long long rangeInteger = [timer.userInfo[RangeIntegerKey] doubleValue];
+    self.flickerNumber = @([self.flickerNumber doubleValue] + rangeInteger);
     
     int multiple = [timer.userInfo[MultipleKey] intValue];
     if(multiple > 0){
@@ -205,14 +208,17 @@
     }
     
     NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
-    self.text = [self finalString:@([self.flickerNumber integerValue]) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+    self.text = [self finalString:@([self.flickerNumber doubleValue]) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+    
+    NSLog(@"text = %@ flicker number = %@", self.text, self.flickerNumber);
 
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
     
-    if([self.flickerNumber intValue] >= [timer.userInfo[EndNumberKey] intValue]){
+    if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
         self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+        NSLog(@"final text = %@ flicker number = %@", self.text, self.flickerNumber);
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
@@ -228,12 +234,14 @@
  */
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple{
     NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
-   self.text = [self finalString:@([self.flickerNumber floatValue]/multiple) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+    self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+    NSLog(@"text = %@ flicker number = %@", self.text, @([self.flickerNumber doubleValue]/multiple));
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
-    if([self.flickerNumber intValue] >= [timer.userInfo[EndNumberKey] intValue]){
+    if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
         self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+        NSLog(@"final text = %@ flicker number = %@", self.text, self.flickerNumber);
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
@@ -315,7 +323,7 @@
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
     }else{
         NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"string format type is not matched,please check your format type");
-        finalString = [NSString stringWithFormat:formatStr,[number floatValue]];
+        finalString = [NSString stringWithFormat:formatStr,[number doubleValue]];
     }
     return finalString;
 }

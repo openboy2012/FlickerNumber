@@ -48,9 +48,9 @@
 - (IBAction)valueChanged:(id)sender{
     if([(UISwitch *)sender isOn]){
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker dd_setNumber:@(1234567890) formatter:nil];
+            [self.lblFlicker dd_setNumber:@(123456789123456) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-            [self.lblFlicker dd_setNumber:@(12949673.22) formatter:nil];
+            [self.lblFlicker dd_setNumber:@(123456789.123456) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
             [self.lblFlicker dd_setNumber:@(5888) format:@"￥%@" formatter:nil];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
@@ -69,9 +69,9 @@
         }
     }else{
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker dd_setNumber:@(123456789012)];
+            [self.lblFlicker dd_setNumber:@(1234567890123456)];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-            [self.lblFlicker dd_setNumber:@(231341.213)];
+            [self.lblFlicker dd_setNumber:@(987654321.987654)];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
             [self.lblFlicker dd_setNumber:@(5888.28) format:@"￥%.2f"];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
