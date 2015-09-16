@@ -83,7 +83,7 @@
                                                            andRange:NSMakeRange(0, 1)],
                               [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                            andRange:NSMakeRange(1, 3)]];
-            [self.lblFlicker dd_setNumber:@(1234.567) duration:1.0f format:@"￥%.2f" attributes:attributes];
+            [self.lblFlicker dd_setNumber:@(1234.567) duration:-0.1f format:@"￥%.2f" attributes:attributes];
         }
     }
 }

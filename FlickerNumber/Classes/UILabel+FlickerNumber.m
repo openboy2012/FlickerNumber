@@ -210,15 +210,12 @@
     NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
     self.text = [self finalString:@([self.flickerNumber doubleValue]) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
     
-    NSLog(@"text = %@ flicker number = %@", self.text, self.flickerNumber);
-
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
     
     if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
         self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-        NSLog(@"final text = %@ flicker number = %@", self.text, self.flickerNumber);
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
@@ -235,13 +232,11 @@
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple{
     NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
     self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-    NSLog(@"text = %@ flicker number = %@", self.text, @([self.flickerNumber doubleValue]/multiple));
     if(timer.userInfo[AttributeKey]){
         [self attributedHandler:timer.userInfo[AttributeKey]];
     }
     if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
         self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-        NSLog(@"final text = %@ flicker number = %@", self.text, self.flickerNumber);
         if(timer.userInfo[AttributeKey]){
             [self attributedHandler:timer.userInfo[AttributeKey]];
         }
