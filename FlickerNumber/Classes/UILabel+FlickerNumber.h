@@ -8,11 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum : NSUInteger {
-    Format,
-    Mutiable
-} FlickerNumberAttributeType;
-
 @interface UILabel (FlickerNumber)
 
 /**
@@ -171,6 +166,14 @@ typedef enum : NSUInteger {
 
 @interface NSDictionary(FlickerNumber)
 
-+ (instancetype)dictionaryWithAttribute:(NSDictionary *)attribute andRange:(NSRange)range;
+/**
+ *  create an attribute texts dictionary
+ *
+ *  @param attribute attribute text
+ *  @param range     range of the attribute text
+ *
+ *  @return dictionary of attribute texts
+ */
++ (instancetype)dictionaryWithAttribute:(NSDictionary *)attribute range:(NSRange)range;
 
 @end

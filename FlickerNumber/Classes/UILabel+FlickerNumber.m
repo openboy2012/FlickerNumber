@@ -9,19 +9,19 @@
 #import "UILabel+FlickerNumber.h"
 #import <objc/runtime.h>
 
-#define RangeIntegerKey @"RangeKey"
-#define MultipleKey @"MultipleKey"
-#define BeginNumberKey @"BeginNumberKey"
-#define EndNumberKey @"EndNumberKey"
-#define ResultNumberKey @"ResultNumberKey"
+#define DDRangeIntegerKey @"RangeKey"
+#define DDMultipleKey @"MultipleKey"
+#define DDBeginNumberKey @"BeginNumberKey"
+#define DDEndNumberKey @"EndNumberKey"
+#define DDResultNumberKey @"ResultNumberKey"
 
-#define AttributeKey @"AttributeKey"
-#define FormatKey @"FormatStringKey"
+#define DDAttributeKey @"AttributeKey"
+#define DDFormatKey @"FormatStringKey"
 
-#define Frequency 1.0/30.0f
+#define DDFrequency 1.0/30.0f
 
-#define DictArrtributeKey @"attribute"
-#define DictRangeKey @"range"
+#define DDDictArrtributeKey @"attribute"
+#define DDDictRangeKey @"range"
 
 
 @interface UILabel ()
@@ -35,6 +35,7 @@
 @implementation UILabel (FlickerNumber)
 
 #pragma mark - runtime methods
+
 - (void)setFlickerNumber:(NSNumber *)flickerNumber{
     objc_setAssociatedObject(self, @selector(flickerNumber), flickerNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
@@ -152,13 +153,13 @@
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithCapacity:0];
     
     if(formatStr)
-        [userInfo setObject:formatStr forKey:FormatKey];
+        [userInfo setObject:formatStr forKey:DDFormatKey];
     
-    [userInfo setObject:number forKey:ResultNumberKey];
+    [userInfo setObject:number forKey:DDResultNumberKey];
     
     //initialize variables
     long long beginNumber = 0;
-    [userInfo setObject:@(beginNumber) forKey:BeginNumberKey];
+    [userInfo setObject:@(beginNumber) forKey:DDBeginNumberKey];
     self.flickerNumber = @(0);
     long long endNumber = 0;
     
@@ -172,21 +173,21 @@
         return;
     }
     
-    [userInfo setObject:@(multiple) forKey:MultipleKey];
-    [userInfo setObject:@(endNumber) forKey:EndNumberKey];
-    if((endNumber * Frequency)/duration < 1){
+    [userInfo setObject:@(multiple) forKey:DDMultipleKey];
+    [userInfo setObject:@(endNumber) forKey:DDEndNumberKey];
+    if((endNumber * DDFrequency)/duration < 1){
         duration = duration * 0.3;
     }
-    [userInfo setObject:@((endNumber * Frequency)/duration) forKey:RangeIntegerKey];
+    [userInfo setObject:@((endNumber * DDFrequency)/duration) forKey:DDRangeIntegerKey];
     
     if(attrs)
-        [userInfo setObject:attrs forKey:AttributeKey];
+        [userInfo setObject:attrs forKey:DDAttributeKey];
     
     self.flickerNumberFormatter = nil;
     if(formatter)
         self.flickerNumberFormatter = formatter;
-
-    self.currentTimer = [NSTimer scheduledTimerWithTimeInterval:Frequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
+    
+    self.currentTimer = [NSTimer scheduledTimerWithTimeInterval:DDFrequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.currentTimer forMode:NSRunLoopCommonModes];
 }
 
@@ -198,26 +199,26 @@
  *  @param timer schedule timer
  */
 - (void)flickerAnimation:(NSTimer *)timer{
-    long long rangeInteger = [timer.userInfo[RangeIntegerKey] doubleValue];
+    long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] doubleValue];
     self.flickerNumber = @([self.flickerNumber doubleValue] + rangeInteger);
     
-    int multiple = [timer.userInfo[MultipleKey] intValue];
+    int multiple = [timer.userInfo[DDMultipleKey] intValue];
     if(multiple > 0){
         [self floatNumberHandler:timer andMultiple:multiple];
         return;
     }
     
-    NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
-    self.text = [self finalString:@([self.flickerNumber doubleValue]) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
+    NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
+    self.text = [self finalString:@([self.flickerNumber doubleValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
     
-    if(timer.userInfo[AttributeKey]){
-        [self attributedHandler:timer.userInfo[AttributeKey]];
+    if(timer.userInfo[DDAttributeKey]){
+        [self attributedHandler:timer.userInfo[DDAttributeKey]];
     }
     
-    if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
-        self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-        if(timer.userInfo[AttributeKey]){
-            [self attributedHandler:timer.userInfo[AttributeKey]];
+    if([self.flickerNumber doubleValue] >= [timer.userInfo[DDEndNumberKey] doubleValue]){
+        self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+        if(timer.userInfo[DDAttributeKey]){
+            [self attributedHandler:timer.userInfo[DDAttributeKey]];
         }
         [timer invalidate];
     }
@@ -230,15 +231,15 @@
  *  @param multiple multiple
  */
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple{
-    NSString *formatStr = timer.userInfo[FormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
-    self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-    if(timer.userInfo[AttributeKey]){
-        [self attributedHandler:timer.userInfo[AttributeKey]];
+    NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
+    self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+    if(timer.userInfo[DDAttributeKey]){
+        [self attributedHandler:timer.userInfo[DDAttributeKey]];
     }
-    if([self.flickerNumber doubleValue] >= [timer.userInfo[EndNumberKey] doubleValue]){
-        self.text = [self finalString:timer.userInfo[ResultNumberKey] stringFormat:formatStr andFormatter:self.flickerNumberFormatter];
-        if(timer.userInfo[AttributeKey]){
-            [self attributedHandler:timer.userInfo[AttributeKey]];
+    if([self.flickerNumber doubleValue] >= [timer.userInfo[DDEndNumberKey] doubleValue]){
+        self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+        if(timer.userInfo[DDAttributeKey]){
+            [self attributedHandler:timer.userInfo[DDAttributeKey]];
         }
         [timer invalidate];
     }
@@ -251,12 +252,12 @@
  */
 - (void)attributedHandler:(id)attributes{
     if([attributes isKindOfClass:[NSDictionary class]]){
-        NSRange range = [attributes[DictRangeKey] rangeValue];
-        [self addAttributes:attributes[DictArrtributeKey] range:range];
+        NSRange range = [attributes[DDDictRangeKey] rangeValue];
+        [self addAttributes:attributes[DDDictArrtributeKey] range:range];
     }else if([attributes isKindOfClass:[NSArray class]]){
         for (NSDictionary *attribute in attributes) {
-            NSRange range = [attribute[DictRangeKey] rangeValue];
-            [self addAttributes:attribute[DictArrtributeKey] range:range];
+            NSRange range = [attribute[DDDictRangeKey] rangeValue];
+            [self addAttributes:attribute[DDDictArrtributeKey] range:range];
         }
     }
 }
@@ -267,7 +268,8 @@
  *  @param attri attribute
  *  @param range range
  */
-- (void)addAttributes:(NSDictionary *)attri range:(NSRange)range{
+- (void)addAttributes:(NSDictionary *)attri
+                range:(NSRange)range {
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     // handler the out range exception
     if(range.location+range.length <= str.length){
@@ -283,8 +285,9 @@
  *
  *  @return mulitple
  */
-- (int)multipleForNumber:(NSNumber *)number formatString:(NSString *)formatStr{
-    if([formatStr rangeOfString:@"%@"].location == NSNotFound){
+- (int)multipleForNumber:(NSNumber *)number
+            formatString:(NSString *)formatStr{
+    if([formatStr rangeOfString:@"%@"].location == NSNotFound) {
         formatStr = [self regexNumberFormat:formatStr];
         NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
         if([formatNumberString rangeOfString:@"."].location != NSNotFound){
@@ -303,8 +306,9 @@
     return 0;
 }
 
-- (NSString *)stringFromNumber:(NSNumber *)number numberFormatter:(NSNumberFormatter *)formattor{
-    if(!formattor){
+- (NSString *)stringFromNumber:(NSNumber *)number
+               numberFormatter:(NSNumberFormatter *)formattor {
+    if(!formattor) {
         formattor = [[NSNumberFormatter alloc] init];
         formattor.formatterBehavior = NSNumberFormatterBehavior10_4;
         formattor.numberStyle = NSNumberFormatterDecimalStyle;
@@ -312,7 +316,9 @@
     return [formattor stringFromNumber:number];
 }
 
-- (NSString *)finalString:(NSNumber *)number stringFormat:(NSString *)formatStr andFormatter:(NSNumberFormatter *)formatter{
+- (NSString *)finalString:(NSNumber *)number
+             stringFormat:(NSString *)formatStr
+          numberFormatter:(NSNumberFormatter *)formatter {
     NSString *finalString = nil;
     if(formatter){
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
@@ -323,14 +329,26 @@
     return finalString;
 }
 
-- (NSNumberFormatter *)defaultFormatter{
+/**
+ *  get the decimal style number as default number formatter
+ *
+ *  @return number formatter
+ */
+- (NSNumberFormatter *)defaultFormatter {
     NSNumberFormatter *formattor = [[NSNumberFormatter alloc] init];
     formattor.formatterBehavior = NSNumberFormatterBehavior10_4;
     formattor.numberStyle = NSNumberFormatterDecimalStyle;
     return formattor;
 }
 
-- (NSString *)regexNumberFormat:(NSString *)formatString{
+/**
+ *  get the format string use regex method
+ *
+ *  @param formatString origin string
+ *
+ *  @return format string
+ */
+- (NSString *)regexNumberFormat:(NSString *)formatString {
     NSError *regexError = nil;
     NSRegularExpression *regex =
     [NSRegularExpression regularExpressionWithPattern:@"^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
@@ -354,10 +372,10 @@
 
 @implementation NSDictionary(FlickerNumber)
 
-+ (instancetype)dictionaryWithAttribute:(NSDictionary *)attribute andRange:(NSRange)range{
++ (instancetype)dictionaryWithAttribute:(NSDictionary *)attribute range:(NSRange)range {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:0];
-    [dict setObject:attribute forKey:DictArrtributeKey];
-    [dict setObject:[NSValue valueWithRange:range] forKey:DictRangeKey];
+    [dict setObject:attribute forKey:DDDictArrtributeKey];
+    [dict setObject:[NSValue valueWithRange:range] forKey:DDDictRangeKey];
     return dict;
 }
 

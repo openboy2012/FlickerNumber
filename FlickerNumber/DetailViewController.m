@@ -36,14 +36,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)valueChanged:(id)sender{
     if([(UISwitch *)sender isOn]){
@@ -55,13 +55,13 @@
             [self.lblFlicker dd_setNumber:@(5888) format:@"￥%@" formatter:nil];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                         andRange:NSMakeRange(0, 1)];
+                                                            range:NSMakeRange(0, 1)];
             [self.lblFlicker dd_setNumber:@(1888.88) formatter:nil attributes:attributes];
         }else{
             id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
-                                                           andRange:NSMakeRange(0, 1)],
+                                                              range:NSMakeRange(0, 1)],
                               [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                           andRange:NSMakeRange(1, 3)]];
+                                                              range:NSMakeRange(1, 3)]];
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
             formatter.formatterBehavior = NSNumberFormatterBehavior10_4;
             formatter.numberStyle = NSNumberFormatterDecimalStyle;
@@ -76,13 +76,13 @@
             [self.lblFlicker dd_setNumber:@(5888.28) format:@"￥%.2f"];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                         andRange:NSMakeRange(0, 1)];
+                                                            range:NSMakeRange(0, 1)];
             [self.lblFlicker dd_setNumber:@(1888.88) attributes:attributes];
         }else{
             id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
-                                                           andRange:NSMakeRange(0, 1)],
+                                                              range:NSMakeRange(0, 1)],
                               [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                           andRange:NSMakeRange(1, 3)]];
+                                                              range:NSMakeRange(1, 3)]];
             [self.lblFlicker dd_setNumber:@(1234.567) duration:-0.1f format:@"￥%.2f" attributes:attributes];
         }
     }
