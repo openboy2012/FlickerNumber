@@ -40,13 +40,13 @@ for example:
         [self.lblFlicker dd_setNumber:@(75.212) format:@"￥%.2f"];
     }else if([self.title isEqualToString:@"Flicker A Attribute Number"]){
         id attributes = [NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
-                                                     andRange:NSMakeRange(0, 1)];
+                                                     range:NSMakeRange(0, 1)];
         [self.lblFlicker dd_setNumber:@(123.45) attributes:attributes];
     }else{
         id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
-                                                       andRange:NSMakeRange(0, 1)],
+                                                       range:NSMakeRange(0, 1)],
                           [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
-                                                       andRange:NSMakeRange(1, 3)]];
+                                                       range:NSMakeRange(1, 3)]];
         [self.lblFlicker dd_setNumber:@(123.45) duration:1.0f format:@"￥%.2f" attributes:attributes];
     }
 }
@@ -82,13 +82,14 @@ for example:
 `- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter attributes:(id)attrs;`
 
 ## Updates
+- [1.0] add the long long type integer flicker function.
 - [0.2] add the NSNumberFormatter function.
 - [0.1] add the flicker number kit.
 
 ## Requirements
 
-- Xcode 6
-- iOS 6.0
+- Xcode 7
+- iOS 5.1.1
 
 ## Author
 
