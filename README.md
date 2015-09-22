@@ -26,7 +26,7 @@ import `UILabel+FlickerNumber.h` in your project
 then you can use the category methods in any initilized UILabel to implement the effect of flicker number.
 
 for example:
-```
+```objective-c
 @property (nonatomic, weak) IBOutlet UILabel *lblFlicker; //for a xib label
 
 - (void)viewWillAppear:(BOOL)animated{
