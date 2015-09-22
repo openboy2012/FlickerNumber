@@ -2,11 +2,11 @@
 flicker number like alipay use UILabel category
 
 ##Effects
-<img src="http://ipa-download.qiniudn.com/flicker a format number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker an attribute number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker a float number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker an integer number.gif" width="276"/>
-<img src="http://ipa-download.qiniudn.com/flicker number.gif" width="276"/>
+<img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
+<img src="http://7fvget.com1.z0.glb.clouddn.com/flicker an attribute number.gif" width="276"/>
+<img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a float number.gif" width="276"/>
+<img src="http://7fvget.com1.z0.glb.clouddn.com/flicker an integer number.gif" width="276"/>
+<img src="http://7fvget.com1.z0.glb.clouddn.com/flicker number.gif" width="276"/>
 
 ##Installation
 
