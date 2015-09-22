@@ -82,7 +82,7 @@ for example:
 `- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter attributes:(id)attrs;`
 
 ## Updates
-- [1.0] add the long long type integer flicker function.
+- [1.0] add the long long type integer or double number flicker function.
 - [0.2] add the NSNumberFormatter function.
 - [0.1] add the flicker number kit.
 
