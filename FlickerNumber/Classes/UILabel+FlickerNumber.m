@@ -133,12 +133,12 @@
     [self dd_setNumber:number duration:duration format:formatStr numberFormatter:nil attributes:attrs];
 }
 
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter attributes:(id)attrs {
     /**
      *  check the number type
      */
     NSAssert([number isKindOfClass:[NSNumber class]], @"Number Type is not matched , exit");
-    if(![number isKindOfClass:[NSNumber class]]){
+    if(![number isKindOfClass:[NSNumber class]]) {
         self.text = [NSString stringWithFormat:@"%@",number];
         return;
     }
@@ -160,12 +160,13 @@
     //initialize variables
     long long beginNumber = 0;
     [userInfo setObject:@(beginNumber) forKey:DDBeginNumberKey];
-    self.flickerNumber = @(0);
-    long long endNumber = 0;
+    self.flickerNumber = @0;
+    unsigned long long endNumber = [number unsignedLongLongValue];
     
-    //get multiple if number is float & double type
+    //get multiple if number is double type
     int multiple = [self multipleForNumber:number formatString:formatStr];
-    endNumber = multiple > 0 ? [number doubleValue] * multiple : [number longLongValue];
+    if (multiple > 0)
+        endNumber = [number doubleValue] * multiple;
     
     //check the number if out of bounds the unsigned int length
     if(endNumber >= INT64_MAX){
@@ -199,28 +200,27 @@
  *  @param timer schedule timer
  */
 - (void)flickerAnimation:(NSTimer *)timer{
-    long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] doubleValue];
-    self.flickerNumber = @([self.flickerNumber doubleValue] + rangeInteger);
+    long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] longLongValue];
+    self.flickerNumber = @([self.flickerNumber longLongValue] + rangeInteger);
     
     int multiple = [timer.userInfo[DDMultipleKey] intValue];
-    if(multiple > 0){
+    if(multiple > 0) {
         [self floatNumberHandler:timer andMultiple:multiple];
-        return;
-    }
-    
-    NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
-    self.text = [self finalString:@([self.flickerNumber doubleValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
-    
-    if(timer.userInfo[DDAttributeKey]){
-        [self attributedHandler:timer.userInfo[DDAttributeKey]];
-    }
-    
-    if([self.flickerNumber doubleValue] >= [timer.userInfo[DDEndNumberKey] doubleValue]){
-        self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+    }else {
+        NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
+        self.text = [self finalString:@([self.flickerNumber longLongValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+        
         if(timer.userInfo[DDAttributeKey]){
             [self attributedHandler:timer.userInfo[DDAttributeKey]];
         }
-        [timer invalidate];
+        
+        if([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]){
+            self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
+            if(timer.userInfo[DDAttributeKey]){
+                [self attributedHandler:timer.userInfo[DDAttributeKey]];
+            }
+            [timer invalidate];
+        }
     }
 }
 
@@ -230,13 +230,13 @@
  *  @param timer    timer
  *  @param multiple multiple
  */
-- (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple{
+- (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple {
     NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
     self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
     if(timer.userInfo[DDAttributeKey]){
         [self attributedHandler:timer.userInfo[DDAttributeKey]];
     }
-    if([self.flickerNumber doubleValue] >= [timer.userInfo[DDEndNumberKey] doubleValue]){
+    if([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]){
         self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         if(timer.userInfo[DDAttributeKey]){
             [self attributedHandler:timer.userInfo[DDAttributeKey]];
@@ -286,7 +286,7 @@
  *  @return mulitple
  */
 - (int)multipleForNumber:(NSNumber *)number
-            formatString:(NSString *)formatStr{
+            formatString:(NSString *)formatStr {
     if([formatStr rangeOfString:@"%@"].location == NSNotFound) {
         formatStr = [self regexNumberFormat:formatStr];
         NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
@@ -298,7 +298,7 @@
     }
     
     NSString *str = [NSString stringWithFormat:@"%@",number];
-    if([str rangeOfString:@"."].location != NSNotFound){
+    if([str rangeOfString:@"."].location != NSNotFound) {
         NSUInteger length = [[str substringFromIndex:[str rangeOfString:@"."].location +1] length];
         // Max Multiple is 6
         return  length >= 6 ? pow(10, 6): pow(10, (int)length);
