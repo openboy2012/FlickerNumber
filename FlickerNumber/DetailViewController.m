@@ -48,11 +48,11 @@
 - (IBAction)valueChanged:(id)sender{
     if([(UISwitch *)sender isOn]){
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker dd_setNumber:@(UINT64_MAX-1) formatter:nil];
+            [self.lblFlicker dd_setNumber:@(8) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker dd_setNumber:@(123456789.123456) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-            [self.lblFlicker dd_setNumber:@(5888) format:@"￥%@" formatter:nil];
+            [self.lblFlicker dd_setNumber:@(9) format:@"￥%@" formatter:nil];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                             range:NSMakeRange(0, 1)];

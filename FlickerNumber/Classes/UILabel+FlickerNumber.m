@@ -200,8 +200,14 @@
  *  @param timer schedule timer
  */
 - (void)flickerAnimation:(NSTimer *)timer{
-    long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] longLongValue];
-    self.flickerNumber = @([self.flickerNumber longLongValue] + rangeInteger);
+    if ([timer.userInfo[DDRangeIntegerKey] floatValue] >= 1.0) {
+        long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] longLongValue];
+        self.flickerNumber = @([self.flickerNumber longLongValue] + rangeInteger);
+    } else {
+        float rangeInteger = [timer.userInfo[DDRangeIntegerKey] floatValue];
+        self.flickerNumber = @([self.flickerNumber floatValue] + rangeInteger);
+    }
+    
     
     int multiple = [timer.userInfo[DDMultipleKey] intValue];
     if(multiple > 0) {
@@ -272,7 +278,7 @@
                 range:(NSRange)range {
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     // handler the out range exception
-    if(range.location+range.length <= str.length){
+    if(range.location + range.length <= str.length){
         [str addAttributes:attri range:range];
     }
     self.attributedText = str;
