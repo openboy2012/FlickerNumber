@@ -143,7 +143,7 @@
         return;
     }
     
-    //limit duration is postive number and it is large than 0.3
+    /* limit duration is postive number and it is large than 0.3 , fixed the issue#1--https://github.com/openboy2012/FlickerNumber/issues/1 */
     duration = fabs(duration) < 0.3 ? 0.3 : fabs(duration);
     
     [self.currentTimer invalidate];
@@ -200,6 +200,9 @@
  *  @param timer schedule timer
  */
 - (void)flickerAnimation:(NSTimer *)timer{
+    /**
+     *  check the rangeNumber if more than 1.0, fixed the issue#2--https://github.com/openboy2012/FlickerNumber/issues/2
+     */
     if ([timer.userInfo[DDRangeIntegerKey] floatValue] >= 1.0) {
         long long rangeInteger = [timer.userInfo[DDRangeIntegerKey] longLongValue];
         self.flickerNumber = @([self.flickerNumber longLongValue] + rangeInteger);
