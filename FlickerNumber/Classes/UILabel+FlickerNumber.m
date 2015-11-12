@@ -2,7 +2,7 @@
 //  UILabel+FlickerNumber.m
 //  FlickerNumber
 //
-//  Created by Diaoshu on 15-2-1.
+//  Created by DeJohn Dong on 15-2-1.
 //  Copyright (c) 2015年 DDKit. All rights reserved.
 //
 
@@ -259,11 +259,11 @@
  *
  *  @param attributes attributes variable
  */
-- (void)attributedHandler:(id)attributes{
-    if([attributes isKindOfClass:[NSDictionary class]]){
+- (void)attributedHandler:(id)attributes {
+    if ([attributes isKindOfClass:[NSDictionary class]]) {
         NSRange range = [attributes[DDDictRangeKey] rangeValue];
         [self addAttributes:attributes[DDDictArrtributeKey] range:range];
-    }else if([attributes isKindOfClass:[NSArray class]]){
+    } else if([attributes isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attribute in attributes) {
             NSRange range = [attribute[DDDictRangeKey] rangeValue];
             [self addAttributes:attribute[DDDictArrtributeKey] range:range];
