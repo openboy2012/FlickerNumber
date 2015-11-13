@@ -1,5 +1,5 @@
 # FlickerNumber
-flicker number like alipay use UILabel category
+Flicker a number like alipay use UILabel category. It can be wonderful when use the advanced method.
 
 ##Effects
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
@@ -54,32 +54,185 @@ for example:
 ```
 
 ## Methods
+```objective-c
+/**
+ *  Flicker a number without other effects.
+ *
+ *  @param number    The number for flicker animation, can't be `nil`.
+ */
+- (void)fn_setNumber:(NSNumber *)number;
 
-`- (void)dd_setNumber:(NSNumber *)number; `  simple method
+/**
+ *  Flicker a number with number-formatter style. You can use the `NSNumberFormatterCurrencyStyle` number-formatter style, the number will flicker animation as `$1,023.12`.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatter The number-formatter style. If this parameter is `nil`, the method should use the default number-formatter style -- `NSNumberFormatterDecimalStyle`, so `1000000` will be '1,000,000'.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+           formatter:(nullable NSNumberFormatter *)formatter;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration;` control flicker number duration time
+/**
+ *  Flicker a number in during time.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time, can't be a minus.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration;
 
-`- (void)dd_setNumber:(NSNumber *)number  format:(NSString *)formatStr; ` flicker number with string format
+/**
+ *  Flicker a number in during time with number-formatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatter The number-formatter style.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+           formatter:(nullable NSNumberFormatter *)formatter;
 
-`- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs;` flicker number with attributes
+/**
+ *  Flicker a number with string-format style. like this: `Today's income: $200.00`.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatStr The string-format String. If you set this parameter is `nil`, the method is same to `fn_setNumber:`.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+              format:(nullable NSString *)formatStr;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr;`
+/**
+ *  Flicker a number with string-format String & number-formatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatStr The string-format String.
+ *  @param formatter The number-formatter style.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+              format:(nullable NSString *)formatStr
+           formatter:(nullable NSNumberFormatter *)formatter;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs; `
 
-`- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter; `  flicker a number with NSNumberFormatter
+/**
+ *  Flicker a number with attributed(s) property.
+ *
+ *  @param number The number for flicker animation.
+ *  @param attrs  The attributed number set(a dictionary OR array of dictionaries), character attributes for text. Only can attributed the number because there are no string-format String. Use this parameter the number text can be colorful and wonderful. If you set this parameter is `nil`, the same to method `fn_setNumber:`.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+          attributes:(nullable id)attrs;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter;` 
+/**
+ *  Flicker a number with number-formatter style & attributed(s) property.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatter The number-formatter style.
+ *  @param attrs     The attributed number set(a dictionary OR array of dictionaries).
+ */
+- (void)fn_setNumber:(NSNumber *)number
+           formatter:(nullable NSNumberFormatter *)formatter
+          attributes:(nullable id)attrs;
 
-`- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter;` 
+/**
+ *  Flicker a number with string-format String & attributed(s) property.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatStr The string-format String.
+ *  @param attrs     The attributed string set(a dictionary OR array of dictionaries). You can attributed(s) the number or string-format String.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+              format:(nullable NSString *)formatStr
+          attributes:(nullable id)attrs;
 
-`- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter attributes:(id)attrs;` 
+/**
+ *  Flicker a number in dafault during time(1.0s) with all effects.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param formatStr The string-format String.
+ *  @param formatter The number-formatter style.
+ *  @param attrs     The attributed string set(a dictionary OR array of dictionaries).You can attributed(s) the number or string-format String.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+              format:(nullable NSString *)formatStr
+           formatter:(nullable NSNumberFormatter *)formatter
+          attributes:(nullable id)attrs;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter;`
+/**
+ *  Flicker a number in during time with string-format String.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatStr The string-format String.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(nullable NSString *)formatStr;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter attributes:(id)attrs; `
+/**
+ *  Flicker a number in during time with string-format String & number-formatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatStr The string-format String.
+ *  @param formatter The number-formatter style.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(nullable NSString *)formatStr
+           formatter:(nullable NSNumberFormatter *)formatter;
 
-`- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter attributes:(id)attrs;`
+/**
+ *  Flicker a number in during time with attributed(s) property.
+ *
+ *  @param number   The number for flicker animation.
+ *  @param duration The flicker animation during time.
+ *  @param attrs    The attributed number set(a dictionary OR array of dictionaries).
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+          attributes:(nullable id)attrs;
+
+/**
+ *  Flicker a number in during time with attributed(s) property of number & number-formatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatter The number-formatter style.
+ *  @param attrs     The attributed number set(a dictionary OR array of dictionaries).
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+           formatter:(nullable NSNumberFormatter *)formatter
+          attributes:(nullable id)attrs;
+
+/**
+ *  Flicker a number in during time with effects except number-formatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatStr The string-format String.
+ *  @param attrs     The attributed string set(a dictionary OR array of dictionaries). You can set string-format String OR number attributes both.
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(nullable NSString *)formatStr
+          attributes:(nullable id)attrs;
+
+/**
+ *  Flicker a number in during time with all the effects. You can attributed(s) the number or string-format String. You also can set the number number-fomatter style.
+ *
+ *  @param number    The number for flicker animation.
+ *  @param duration  The flicker animation during time.
+ *  @param formatStr The string-format String.
+ *  @param formatter The number-formatter style.
+ *  @param attrs     The attributed string set(a dictionary OR array of dictionaries).
+ */
+- (void)fn_setNumber:(NSNumber *)number
+            duration:(NSTimeInterval)duration
+              format:(nullable NSString *)formatStr
+     numberFormatter:(nullable NSNumberFormatter *)formatter
+          attributes:(nullable id)attrs;
+
+```
 
 ## Updates
 - [1.0] add the long long type integer or double number flicker function.
