@@ -207,11 +207,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - private methods
 /**
- *  flicker number animation
+ *  Flicker number animation implemetation method.
  *
- *  @param timer schedule timer
+ *  @param timer  The schedule timer, the time interval decide the number flicker counts.
  */
-- (void)flickerAnimation:(NSTimer *)timer{
+- (void)flickerAnimation:(NSTimer *)timer {
     /**
      *  check the rangeNumber if more than 1.0, fixed the issue#2--https://github.com/openboy2012/FlickerNumber/issues/2
      */
@@ -246,10 +246,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  float number handler
+ *  Float number handle method.
  *
  *  @param timer    timer
- *  @param multiple multiple
+ *  @param multiple The number's multiple.
  */
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple {
     NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
@@ -267,9 +267,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  attributes string handle methods
+ *  The attributed(s) text handle methods
  *
- *  @param attributes attributes variable
+ *  @param attributes The attributed property, it's a attributed dictionary OR array of attributed dictionaries.
  */
 - (void)attributedHandler:(id)attributes {
     if ([attributes isKindOfClass:[NSDictionary class]]) {
@@ -284,10 +284,10 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  attributes string result methods
+ *  Add attributed property into the number text OR string-format text.
  *
- *  @param attri attribute
- *  @param range range
+ *  @param attri The attributed of the text
+ *  @param range The range of the attributed property
  */
 - (void)addAttributes:(NSDictionary *)attri
                 range:(NSRange)range {
@@ -300,7 +300,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  get muliple from number
+ *  Get muliple from number
  *
  *  @param number past number
  *
@@ -313,7 +313,7 @@ NS_ASSUME_NONNULL_BEGIN
         NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
         if([formatNumberString rangeOfString:@"."].location != NSNotFound){
             NSUInteger length = [[formatNumberString substringFromIndex:[formatNumberString rangeOfString:@"."].location +1] length];
-            float padding = log10f(length<6? length:6);
+            float padding = log10f(length < 6 ? length:6);
             number = @([formatNumberString floatValue] + padding);
         }
     }
@@ -351,9 +351,9 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  get the decimal style number as default number formatter
+ *  Get the decimal style number as default number-formatter style.
  *
- *  @return number formatter
+ *  @return The number-foramtter style.
  */
 - (NSNumberFormatter *)defaultFormatter {
     NSNumberFormatter *formattor = [[NSNumberFormatter alloc] init];
@@ -363,11 +363,11 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  get the format string use regex method
+ *  Get the format string use regex feature.
  *
- *  @param formatString origin string
+ *  @param formatString The origin string
  *
- *  @return format string
+ *  @return The string-format String.
  */
 - (NSString *)regexNumberFormat:(NSString *)formatString {
     NSError *regexError = nil;

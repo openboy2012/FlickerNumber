@@ -56,7 +56,7 @@ public extension UILabel {
      - parameter formatter: The number-formatter style.
      */
     public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, formatter: NSNumberFormatter?) {
-        self.fn_setNumber(number, duration: duration, formatter: formatter attributes: nil)
+        self.fn_setNumber(number, duration: duration, formatter: formatter, attributes: nil)
     }
     
     /**
@@ -271,6 +271,7 @@ public extension UILabel {
         NSRunLoop.currentRunLoop().addTimer(self.fn_timer!, forMode: NSRunLoopCommonModes)
     }
     
+    //Flicker animation method implemetation.
     public func flickerAnimation(timer: NSTimer) -> Void {
         if timer.userInfo?.valueForKey(rangeIntegerName)?.floatValue >= 1.0 {
             let rangeInteger = timer.userInfo?.valueForKey(rangeIntegerName)?.longLongValue;
@@ -322,10 +323,11 @@ public extension UILabel {
         }
     }
     
+    //Get the default number-formatter style
     private func fn_defaultNumberFormatter() -> NSNumberFormatter {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        numberFormatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
+        numberFormatter.formatterBehavior = NSNumberFormatterBehavior.BehaviorDefault
         return numberFormatter;
     }
     

@@ -16,6 +16,7 @@
 		0D66141F1BDA6C7C00270ADA /* FlickerNumberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D66141E1BDA6C7C00270ADA /* FlickerNumberUITests.swift */; };
 		0D66142D1BDA6DC600270ADA /* UILabel+FlickerNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D66142C1BDA6DC600270ADA /* UILabel+FlickerNumber.swift */; };
 		0DCFC1111BF0ECDC00EE1FA3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCFC1101BF0ECDC00EE1FA3 /* ListViewController.swift */; };
+		0DF3BFBA1BF56EA6002857E0 /* FlickerNumber-Swift.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 0DF3BFB91BF56EA6002857E0 /* FlickerNumber-Swift.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		0D6614201BDA6C7C00270ADA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D66142C1BDA6DC600270ADA /* UILabel+FlickerNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+FlickerNumber.swift"; sourceTree = "<group>"; };
 		0DCFC1101BF0ECDC00EE1FA3 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		0DF3BFB91BF56EA6002857E0 /* FlickerNumber-Swift.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FlickerNumber-Swift.podspec"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		0D6613F21BDA6C7B00270ADA = {
 			isa = PBXGroup;
 			children = (
+				0DF3BFB91BF56EA6002857E0 /* FlickerNumber-Swift.podspec */,
 				0D6613FD1BDA6C7C00270ADA /* FlickerNumber-Swift */,
 				0D6614121BDA6C7C00270ADA /* FlickerNumber-SwiftTests */,
 				0D66141D1BDA6C7C00270ADA /* FlickerNumber-SwiftUITests */,
@@ -237,6 +240,7 @@
 			files = (
 				0D6614091BDA6C7C00270ADA /* LaunchScreen.storyboard in Resources */,
 				0D6614061BDA6C7C00270ADA /* Assets.xcassets in Resources */,
+				0DF3BFBA1BF56EA6002857E0 /* FlickerNumber-Swift.podspec in Resources */,
 				0D6614041BDA6C7C00270ADA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

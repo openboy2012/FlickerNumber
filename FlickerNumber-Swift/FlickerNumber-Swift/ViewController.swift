@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func valueChanged(sender : AnyObject?) {
-        if ((sender as! UISwitch).on) {
+        if (!(sender as! UISwitch).on) {
             if self.title == "Flicker An Integer Number" {
                 label?.fn_setNumber(1235566321)
             } else if self.title == "Flicker A Float Number" {
