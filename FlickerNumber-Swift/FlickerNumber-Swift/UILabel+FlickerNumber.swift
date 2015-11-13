@@ -19,34 +19,107 @@ private let formatName = "format"
 private let frequency = 1.0/30.0
 
 public extension UILabel {
+     /**
+     Flicker a number without other effects.
+     
+     - parameter number: The number for flicker animation, can't be `nil`.
+     */
     public func fn_setNumber(number: NSNumber) {
         self.fn_setNumber(number, format: nil)
     }
     
+     /**
+     Flicker a number with number-formatter style. You can use the `NSNumberFormatterCurrencyStyle` number-formatter style, the number will flicker animation as `$1,023.12`.
+     
+     - parameter number:    The number for flicker animation.
+     - parameter formatter: The number-formatter style. If this parameter is `nil`, the method should use the default number-formatter style -- `NSNumberFormatterDecimalStyle`, so `1000000` will be '1,000,000'.
+     */
     public func fn_setNumber(number: NSNumber, formatter: NSNumberFormatter?) {
         self.fn_setNumber(number, formatter:formatter, attributes: nil)
     }
     
+     /**
+     Flicker a number in during time.
+     
+     - parameter number:   The number for flicker animation.
+     - parameter duration: The flicker animation during time, can't be a minus.
+     */
+    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval) {
+        self.fn_setNumber(number, duration: duration, format: nil)
+    }
+
+     /**
+     Flicker a number in during time with number-formatter style.
+     
+     - parameter number:    The number for flicker animation.
+     - parameter duration:  The flicker animation during time.
+     - parameter formatter: The number-formatter style.
+     */
+    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, formatter: NSNumberFormatter?) {
+        self.fn_setNumber(number, duration: duration, formatter: formatter attributes: nil)
+    }
+    
+    /**
+     Flicker a number with string-format style. like this: `Today's income: $200.00`.
+     
+     - parameter number: The number for flicker animation.
+     - parameter format: The string-format String. If you set this parameter is `nil`, the method is same to `fn_setNumber:`.
+     */
     public func fn_setNumber(number: NSNumber, format: String?) {
         self.fn_setNumber(number, format: format, attributes: nil)
     }
     
+    /**
+     Flicker a number with string-format String & number-formatter style.
+     
+     - parameter number:    The number for flicker animation.
+     - parameter format:    The string-format String.
+     - parameter formatter: The number-formatter style.
+     */
     public func fn_setNumber(number: NSNumber, format: String?, formatter: NSNumberFormatter?) {
         self.fn_setNumber(number, format: format, formatter: formatter, attributes: nil)
     }
     
+    /**
+     Flicker a number with attributed(s) property.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter attributes: The attributed number set(a dictionary OR array of dictionaries), character attributes for text. Only can attributed the number because there are no string-format String. Use this parameter the number text can be colorful and wonderful. If you set this parameter is `nil`, the same to method `fn_setNumber:`.
+     */
     public func fn_setNumber(number: NSNumber, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, attributes: attributes)
     }
     
+    /**
+      Flicker a number with number-formatter style & attributed(s) property.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter formatter:  The number-formatter style.
+     - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
+     */
     public func fn_setNumber(number: NSNumber, formatter: NSNumberFormatter?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, formatter: formatter, attributes: attributes)
     }
     
+    /**
+     Flicker a number with string-format String & attributed(s) property.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter format:     The string-format String.
+     - parameter attributes: The attributed string set(a dictionary OR array of dictionaries). You can attributed(s) the number or string-format String.
+     */
     public func fn_setNumber(number: NSNumber, format: String?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, format: format, attributes: nil)
     }
     
+    /**
+     Flicker a number in dafault during time(1.0s) with all effects.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter format:     The string-format String.
+     - parameter formatter:  The number-formatter style.
+     - parameter attributes: The attributed string set(a dictionary OR array of dictionaries).You can attributed(s) the number or string-format String.
+     */
     public func fn_setNumber(number: NSNumber, format: String?, formatter: NSNumberFormatter?, attributes: AnyObject?) {
         if formatter == nil {
             self.fn_setNumber(number, duration: 1.0, format: format, numberFomatter: fn_defaultNumberFormatter(), attributes: attributes)
@@ -55,10 +128,25 @@ public extension UILabel {
         }
     }
     
+    /**
+     Flicker a number in during time with string-format String.
+     
+     - parameter nubmer:   The number for flicker animation.
+     - parameter duration: The flicker animation during time.
+     - parameter format:   The number-formatter style.
+     */
     public func fn_setNumber(nubmer: NSNumber, duration: NSTimeInterval, format: String?) {
         self.fn_setNumber(nubmer, duration: duration, format: format, numberFomatter: nil, attributes: nil)
     }
     
+    /**
+     Flicker a number in during time with string-format String & number-formatter style.
+     
+     - parameter nubmer:    The number for flicker animation.
+     - parameter duration:  The flicker animation during time.
+     - parameter format:    The string-format String.
+     - parameter formatter: The number-formatter style.
+     */
     public func fn_setNumber(nubmer: NSNumber, duration: NSTimeInterval, format: String?, formatter: NSNumberFormatter?) {
         if formatter == nil {
             self.fn_setNumber(nubmer, duration: duration, format: format, numberFomatter: fn_defaultNumberFormatter(), attributes: nil)
@@ -67,10 +155,25 @@ public extension UILabel {
         }
     }
     
+    /**
+     Flicker a number in during time with attributed(s) property.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter duration:   The flicker animation during time.
+     - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
+     */
     public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: duration, format: nil, attributes: attributes);
     }
     
+    /**
+     Flicker a number in during time with attributed(s) property of number & number-formatter style.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter duration:   The flicker animation during time.
+     - parameter formatter:  The number-formatter style.
+     - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
+     */
     public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, formatter: NSNumberFormatter?, attributes: AnyObject?) {
         if formatter == nil {
             self.fn_setNumber(number, duration: duration, format: nil, numberFomatter: fn_defaultNumberFormatter(), attributes: attributes)
@@ -79,10 +182,27 @@ public extension UILabel {
         }
     }
 
+    /**
+     Flicker a number in during time with effects except number-formatter style.
+     
+     - parameter number:     The number for flicker animation.
+     - parameter duration:   The flicker animation during time.
+     - parameter format:     The string-format String.
+     - parameter attributes: The attributed string set(a dictionary OR array of dictionaries). You can set string-format String OR number attributes both.
+     */
     public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, format: String?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: duration, format: format, numberFomatter: nil, attributes: attributes)
     }
     
+    /**
+     Flicker a number in during time with all the effects. You can attributed(s) the number or string-format String. You also can set the number number-fomatter style.
+     
+     - parameter number:         The number for flicker animation.
+     - parameter duration:       The flicker animation during time.
+     - parameter format:         The string-format String.
+     - parameter numberFomatter: The number-formatter style.
+     - parameter attributes:     The attributed string set(a dictionary OR array of dictionaries).
+     */
     public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, format: String?, numberFomatter: NSNumberFormatter?, attributes: AnyObject? ) {
         // check the number type
         assert(number.isKindOfClass(NSNumber), "Number Type is not matched, exit")

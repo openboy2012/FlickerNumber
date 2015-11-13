@@ -9,6 +9,8 @@
 #import "UILabel+FlickerNumber.h"
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 #define DDRangeIntegerKey @"RangeKey"
 #define DDMultipleKey @"MultipleKey"
 #define DDBeginNumberKey @"BeginNumberKey"
@@ -23,12 +25,11 @@
 #define DDDictArrtributeKey @"attribute"
 #define DDDictRangeKey @"range"
 
-
 @interface UILabel ()
 
-@property (nonatomic, strong) NSNumber *flickerNumber;
-@property (nonatomic, strong) NSNumberFormatter *flickerNumberFormatter;
-@property (nonatomic, strong) NSTimer *currentTimer;
+@property (nonatomic, strong, readwrite) NSNumber *flickerNumber;
+@property (nonatomic, strong, readwrite, nullable) NSNumberFormatter *flickerNumberFormatter;
+@property (nonatomic, strong, readwrite, nullable) NSTimer *currentTimer;
 
 @end
 
@@ -44,96 +45,108 @@
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setFlickerNumberFormatter:(NSNumberFormatter *)flickerNumberFormatter{
+- (void)setFlickerNumberFormatter:(nullable NSNumberFormatter *)flickerNumberFormatter{
     objc_setAssociatedObject(self, @selector(flickerNumberFormatter), flickerNumberFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSNumberFormatter *)flickerNumberFormatter{
+- (nullable NSNumberFormatter *)flickerNumberFormatter{
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setCurrentTimer:(NSTimer *)currentTimer{
+- (void)setCurrentTimer:(nullable NSTimer *)currentTimer{
     objc_setAssociatedObject(self, @selector(currentTimer), currentTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSTimer *)currentTimer{
+- (nullable NSTimer *)currentTimer{
     return objc_getAssociatedObject(self, _cmd);
 }
 
 #pragma mark - flicker methods(public)
 
-- (void)dd_setNumber:(NSNumber *)number{
-    [self dd_setNumber:number duration:1.0 format:nil attributes:nil];
+//Method #1
+- (void)fn_setNumber:(NSNumber *)number {
+    [self fn_setNumber:number format:nil];
 }
 
-- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter{
+//Method #2
+- (void)fn_setNumber:(NSNumber *)number formatter:(nullable NSNumberFormatter *)formatter {
+    [self fn_setNumber:number formatter:formatter attributes:nil];
+}
+
+//Method #3
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration {
+    [self fn_setNumber:number duration:duration format:nil attributes:nil];
+}
+
+//Method #4
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(nullable NSNumberFormatter *)formatter{
+    [self fn_setNumber:number duration:duration formatter:formatter attributes:nil];
+}
+
+//Method #5
+- (void)fn_setNumber:(NSNumber *)number format:(nullable NSString *)formatStr {
+    [self fn_setNumber:number format:formatStr attributes:nil];
+}
+
+//Method #6
+- (void)fn_setNumber:(NSNumber *)number format:(nullable NSString *)formatStr formatter:(nullable NSNumberFormatter *)formatter {
+    [self fn_setNumber:number format:formatStr formatter:formatter attributes:nil];
+}
+
+//Method #7
+- (void)fn_setNumber:(NSNumber *)number attributes:(nullable id)attrs {
+    [self fn_setNumber:number format:nil attributes:attrs];
+}
+
+//Method #8
+- (void)fn_setNumber:(NSNumber *)number formatter:(nullable NSNumberFormatter *)formatter attributes:(nullable id)attrs {
+    [self fn_setNumber:number duration:1.0 format:nil numberFormatter:formatter attributes:attrs];
+}
+
+//Method #9
+- (void)fn_setNumber:(NSNumber *)number format:(nullable NSString *)formatStr attributes:(nullable id)attrs {
+    [self fn_setNumber:number duration:1.0 format:formatStr attributes:attrs];
+}
+
+//Method #10
+- (void)fn_setNumber:(NSNumber *)number format:(nullable NSString *)formatStr formatter:(nullable NSNumberFormatter *)formatter attributes:(nullable id)attrs {
+    if(!formatter) {
+        formatter = [self defaultFormatter];
+    }
+    [self fn_setNumber:number duration:1.0 format:formatStr numberFormatter:formatter attributes:attrs];
+}
+
+//Method #11
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(nullable NSString *)formatStr {
+    [self fn_setNumber:number duration:duration format:formatStr attributes:nil];
+}
+
+//Method #12
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(nullable NSString *)formatStr formatter:(nullable NSNumberFormatter *)formatter {
     if(!formatter)
         formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:1.0 format:nil numberFormatter:formatter attributes:nil];
+    [self fn_setNumber:number duration:duration format:formatStr formatter:formatter];
 }
 
-- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr{
-    [self dd_setNumber:number duration:1.0 format:formatStr attributes:nil];
+//Method #13
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(nullable id)attrs {
+    [self fn_setNumber:number duration:duration format:nil attributes:attrs];
 }
 
-- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter{
+//Method #14
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(nullable NSNumberFormatter *)formatter attributes:(nullable id)attrs {
     if(!formatter)
         formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:1.0 format:formatStr numberFormatter:formatter attributes:nil];
+    [self fn_setNumber:number duration:duration format:nil numberFormatter:formatter attributes:attrs];
 }
 
-- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs{
-    [self dd_setNumber:number duration:1.0 format:nil attributes:attrs];
+//Method #15
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(nullable NSString *)formatStr attributes:(nullable id)attrs {
+    [self fn_setNumber:number duration:duration format:formatStr numberFormatter:nil attributes:attrs];
 }
 
-
-- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
-    if(!formatter)
-        formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:1.0 format:nil numberFormatter:formatter attributes:attrs];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr{
-    [self dd_setNumber:number duration:duration format:formatStr attributes:nil];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter{
-    if(!formatter)
-        formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:duration format:formatStr numberFormatter:formatter attributes:nil];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration{
-    [self dd_setNumber:number duration:duration format:nil attributes:nil];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter{
-    if(!formatter)
-        formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:duration format:nil numberFormatter:formatter attributes:nil];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs{
-    [self dd_setNumber:number duration:duration format:nil attributes:attrs];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter{
-    if(!formatter)
-        formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:duration format:formatStr formatter:formatter];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter attributes:(id)attrs{
-    if(!formatter)
-        formatter = [self defaultFormatter];
-    [self dd_setNumber:number duration:duration format:nil numberFormatter:formatter attributes:attrs];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr attributes:(id)attrs{
-    [self dd_setNumber:number duration:duration format:formatStr numberFormatter:nil attributes:attrs];
-}
-
-- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter attributes:(id)attrs {
+//Method #16
+- (void)fn_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(nullable NSString *)formatStr numberFormatter:(nullable NSNumberFormatter *)formatter attributes:(nullable id)attrs {
     /**
      *  check the number type
      */
@@ -191,7 +204,6 @@
     self.currentTimer = [NSTimer scheduledTimerWithTimeInterval:DDFrequency target:self selector:@selector(flickerAnimation:) userInfo:userInfo repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.currentTimer forMode:NSRunLoopCommonModes];
 }
-
 
 #pragma mark - private methods
 /**
@@ -379,7 +391,82 @@
 
 @end
 
-@implementation NSDictionary(FlickerNumber)
+@implementation UILabel (FlickerNumberDeprecated)
+
+- (void)dd_setNumber:(NSNumber *)number {
+    [self fn_setNumber:number format:nil];
+}
+
+- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter {
+    [self fn_setNumber:number format:nil formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr {
+    [self fn_setNumber:number format:formatStr];
+}
+
+- (void)dd_setNumber:(NSNumber *)number format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter {
+    [self fn_setNumber:number format:formatStr formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number attributes:(id)attrs {
+    [self fn_setNumber:number attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number formatter:(NSNumberFormatter *)formatter attributes:(id)attrs {
+    [self fn_setNumber:number formatter:formatter attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr {
+    [self fn_setNumber:number duration:duration format:formatStr];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter {
+    [self fn_setNumber:number duration:duration format:formatStr formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration {
+    [self fn_setNumber:number duration:duration];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter {
+    [self fn_setNumber:number duration:duration formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration attributes:(id)attrs {
+    [self fn_setNumber:number duration:duration attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr formatter:(NSNumberFormatter *)formatter {
+    [self fn_setNumber:number duration:duration format:formatStr formatter:formatter];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration formatter:(NSNumberFormatter *)formatter attributes:(id)attrs {
+    [self fn_setNumber:number duration:duration formatter:formatter attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr attributes:(id)attrs {
+    [self fn_setNumber:number duration:duration format:formatStr attributes:attrs];
+}
+
+- (void)dd_setNumber:(NSNumber *)number duration:(NSTimeInterval)duration format:(NSString *)formatStr numberFormatter:(NSNumberFormatter *)formatter attributes:(id)attrs {
+    [self fn_setNumber:number duration:duration format:formatStr numberFormatter:formatter attributes:attrs];
+}
+
+@end
+
+@implementation NSDictionary (FlickerNumber)
+
++ (instancetype)fn_dictionaryWithAttribute:(NSDictionary *)attribute range:(NSRange)range {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:0];
+    [dict setObject:attribute forKey:DDDictArrtributeKey];
+    [dict setObject:[NSValue valueWithRange:range] forKey:DDDictRangeKey];
+    return dict;
+}
+
+@end
+
+@implementation NSDictionary (FlickerNumberDeprecated)
 
 + (instancetype)dictionaryWithAttribute:(NSDictionary *)attribute range:(NSRange)range {
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:0];
@@ -389,3 +476,6 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
+
