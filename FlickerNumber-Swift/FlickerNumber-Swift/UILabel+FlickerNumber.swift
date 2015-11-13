@@ -444,6 +444,7 @@ public extension UILabel {
                 return result as String;
             }
         } catch {
+            print("Exception")
         }
         return "%f"
     }
@@ -489,6 +490,14 @@ public let fnAttributeName = "attributeKey"
 public let fnRangeName = "rangeKey"
 
 public extension NSDictionary {
+    /**
+     Create an attribute texts dictionary, like the NSAttributedString.
+     
+     - parameter attribute: The attributed text of the dictionary.
+     - parameter range:     The range of the attributed text.
+     
+     - returns: Dictionary of attributed text.
+     */
     public static func fn_dictionary(attribute: NSDictionary, range: NSRange) -> NSDictionary {
         let dictionary = NSMutableDictionary()
         dictionary.setObject(attribute , forKey: fnAttributeName)
