@@ -323,7 +323,7 @@ public extension UILabel {
         }
     }
     
-    //Get the default number-formatter style
+    //Get the default number-formatter style.
     private func fn_defaultNumberFormatter() -> NSNumberFormatter {
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
@@ -331,6 +331,7 @@ public extension UILabel {
         return numberFormatter;
     }
     
+    //Show the animation when the number is double type.
     private func fn_finalNumberDoubleType(timer: NSTimer, multiple: Int) {
         var formatStr: String = String()
         if timer.userInfo?.valueForKey(formatName) != nil {
@@ -369,10 +370,12 @@ public extension UILabel {
         }
     }
     
+    //Get the string from number with number-formatter style.
     private func fn_stringFromNumber(number: NSNumber, numberFormatter: NSNumberFormatter) -> String? {
            return numberFormatter.stringFromNumber(number)
     }
     
+    //Get the result string to do animation.
     private func fn_finalNumber(number : NSNumber, format: String, numberFormatter: NSNumberFormatter?) -> String? {
         var finalString = String()
         if numberFormatter != nil {
@@ -384,6 +387,7 @@ public extension UILabel {
         return finalString;
     }
     
+    //Add the attributes into the mutable attributed string.
     private func drawAttributes(attributes: AnyObject) -> Void {
         if attributes.isKindOfClass(NSDictionary) {
             let range = attributes.valueForKey(fnRangeName)?.rangeValue
@@ -406,6 +410,14 @@ public extension UILabel {
         self.attributedText = attributedStr;
     }
     
+    /**
+     Get the multiple form the number.
+     
+     - parameter number:       The origin number.
+     - parameter formatString: The string-format String.
+     
+     - returns: The multiple of the number.
+     */
     private func multipleForNumber(number: NSNumber, formatString: String?) -> Int {
         var newNumber = number;
         if formatString != nil && formatString!.rangeOfString("%@") == nil {
@@ -433,6 +445,13 @@ public extension UILabel {
         return 0
     }
     
+    /**
+     Get new the string-format String.
+     
+     - parameter format: The origin string-format String.
+     
+     - returns: The new string-format String.
+     */
     private func regexNumberFormat(format: String) -> String {
         let patternStr : String = "^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
         do {
@@ -455,6 +474,7 @@ private var flickerNumberFormatterKey : Void?
 private var flickerTimerKey : Void?
 
 public extension UILabel {
+    /// The intermediate number, it's private variable. Extend property use the runtime feature.
     public var fn_number: NSNumber? {
         get {
             return objc_getAssociatedObject(self, &flickerNumberKey) as? NSNumber
@@ -465,6 +485,7 @@ public extension UILabel {
         objc_setAssociatedObject(self, &flickerNumberKey, number, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
+    /// The number-formatter style, it's private varibale. Extend property use the runtime feature.
     public var fn_formatter: NSNumberFormatter? {
         get {
             return objc_getAssociatedObject(self, &flickerNumberFormatterKey) as? NSNumberFormatter
@@ -475,6 +496,7 @@ public extension UILabel {
         objc_setAssociatedObject(self, &flickerNumberFormatterKey, formatter, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
+    /// The flicker animation time count Timer.
     public var fn_timer: NSTimer? {
         get {
             return objc_getAssociatedObject(self, &flickerTimerKey) as? NSTimer
