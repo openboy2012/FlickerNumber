@@ -48,11 +48,11 @@
 - (IBAction)valueChanged:(id)sender{
     if([(UISwitch *)sender isOn]){
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker dd_setNumber:@(8) formatter:nil];
+            [self.lblFlicker dd_setNumber:@(1.00) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker dd_setNumber:@(123456789.123456) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-            [self.lblFlicker dd_setNumber:@(9) format:@"￥%@" formatter:nil];
+            [self.lblFlicker dd_setNumber:@(9123.1234) format:@"￥%@" formatter:nil];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                             range:NSMakeRange(0, 1)];
@@ -69,11 +69,11 @@
         }
     }else{
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker dd_setNumber:@(1234567890123456)];
+            [self.lblFlicker dd_setNumber:@(1)];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker dd_setNumber:@(987654321.987654)];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-            [self.lblFlicker dd_setNumber:@(5888.28) format:@"￥%.2f"];
+            [self.lblFlicker dd_setNumber:@(12345.7231) format:@"￥%d"];
         }else if([self.title isEqualToString:@"Flicker An Attribute Number"]){
             id attributes = [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                             range:NSMakeRange(0, 1)];

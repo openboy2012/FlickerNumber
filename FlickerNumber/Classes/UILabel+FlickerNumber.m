@@ -37,27 +37,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - runtime methods
 
-- (void)setFlickerNumber:(NSNumber *)flickerNumber{
+- (void)setFlickerNumber:(NSNumber *)flickerNumber {
     objc_setAssociatedObject(self, @selector(flickerNumber), flickerNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSNumber *)flickerNumber{
+- (NSNumber *)flickerNumber {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setFlickerNumberFormatter:(nullable NSNumberFormatter *)flickerNumberFormatter{
+- (void)setFlickerNumberFormatter:(nullable NSNumberFormatter *)flickerNumberFormatter {
     objc_setAssociatedObject(self, @selector(flickerNumberFormatter), flickerNumberFormatter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (nullable NSNumberFormatter *)flickerNumberFormatter{
+- (nullable NSNumberFormatter *)flickerNumberFormatter {
     return objc_getAssociatedObject(self, _cmd);
 }
 
-- (void)setCurrentTimer:(nullable NSTimer *)currentTimer{
+- (void)setCurrentTimer:(nullable NSTimer *)currentTimer {
     objc_setAssociatedObject(self, @selector(currentTimer), currentTimer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (nullable NSTimer *)currentTimer{
+- (nullable NSTimer *)currentTimer {
     return objc_getAssociatedObject(self, _cmd);
 }
 
@@ -182,14 +182,14 @@ NS_ASSUME_NONNULL_BEGIN
         endNumber = [number doubleValue] * multiple;
     
     //check the number if out of bounds the unsigned int length
-    if(endNumber >= INT64_MAX){
+    if (endNumber >= INT64_MAX) {
         self.text = [NSString stringWithFormat:@"%@",number];
         return;
     }
     
     [userInfo setObject:@(multiple) forKey:DDMultipleKey];
     [userInfo setObject:@(endNumber) forKey:DDEndNumberKey];
-    if((endNumber * DDFrequency)/duration < 1){
+    if ((endNumber * DDFrequency)/duration < 1) {
         duration = duration * 0.3;
     }
     [userInfo setObject:@((endNumber * DDFrequency)/duration) forKey:DDRangeIntegerKey];
@@ -252,12 +252,12 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param multiple The number's multiple.
  */
 - (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple {
-    NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":[NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
+    NSString *formatStr = timer.userInfo[DDFormatKey] ?: (self.flickerNumberFormatter ? @"%@" : [NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
     self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
-    if(timer.userInfo[DDAttributeKey]){
+    if (timer.userInfo[DDAttributeKey]) {
         [self attributedHandler:timer.userInfo[DDAttributeKey]];
     }
-    if([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]){
+    if ([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]) {
         self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         if(timer.userInfo[DDAttributeKey]){
             [self attributedHandler:timer.userInfo[DDAttributeKey]];
@@ -309,10 +309,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (int)multipleForNumber:(NSNumber *)number
             formatString:(NSString *)formatStr {
     if([formatStr rangeOfString:@"%@"].location == NSNotFound) {
+        if([formatStr rangeOfString:@"%d"].location != NSNotFound) {
+            return 0;
+        }
         formatStr = [self regexNumberFormat:formatStr];
         NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
         if([formatNumberString rangeOfString:@"."].location != NSNotFound){
-            NSUInteger length = [[formatNumberString substringFromIndex:[formatNumberString rangeOfString:@"."].location +1] length];
+            NSUInteger length = [[formatNumberString substringFromIndex:[formatNumberString rangeOfString:@"."].location + 1] length];
             float padding = log10f(length < 6 ? length:6);
             number = @([formatNumberString floatValue] + padding);
         }
@@ -341,11 +344,19 @@ NS_ASSUME_NONNULL_BEGIN
              stringFormat:(NSString *)formatStr
           numberFormatter:(NSNumberFormatter *)formatter {
     NSString *finalString = nil;
-    if(formatter){
+    if (formatter) {
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
-    }else{
+    } else {
         NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"string format type is not matched,please check your format type");
-        finalString = [NSString stringWithFormat:formatStr,[number doubleValue]];
+        //fixed the bug if use the `%d` format string.
+        if ([formatStr rangeOfString:@"%d"].location == NSNotFound)
+        {
+            finalString = [NSString stringWithFormat:formatStr,[number doubleValue]];
+        }
+        else
+        {
+            finalString = [NSString stringWithFormat:formatStr,[number longLongValue]];
+        }
     }
     return finalString;
 }
@@ -363,7 +374,7 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /**
- *  Get the format string use regex feature.
+ *  Get the format string use regex feature. This methods to handle the number is an integer number but it should string format as a float number, like this `self.text = [NSString stringFormat:@"%f",1234]`, it's show `1234.000000`.
  *
  *  @param formatString The origin string
  *
