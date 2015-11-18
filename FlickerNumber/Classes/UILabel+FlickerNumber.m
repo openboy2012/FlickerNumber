@@ -177,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
     unsigned long long endNumber = [number unsignedLongLongValue];
     
     //get multiple if number is double type
-    int multiple = [self multipleForNumber:number formatString:formatStr];
+    int multiple = [self getTheMultipleFormNumber:number formatString:formatStr];
     if (multiple > 0)
         endNumber = [number doubleValue] * multiple;
     
@@ -226,19 +226,19 @@ NS_ASSUME_NONNULL_BEGIN
     
     int multiple = [timer.userInfo[DDMultipleKey] intValue];
     if(multiple > 0) {
-        [self floatNumberHandler:timer andMultiple:multiple];
+        [self floatNumberAnimation:timer multiple:multiple];
     }else {
         NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
         self.text = [self finalString:@([self.flickerNumber longLongValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         
         if(timer.userInfo[DDAttributeKey]){
-            [self attributedHandler:timer.userInfo[DDAttributeKey]];
+            [self addTextAttributes:timer.userInfo[DDAttributeKey]];
         }
         
         if([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]){
             self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
             if(timer.userInfo[DDAttributeKey]){
-                [self attributedHandler:timer.userInfo[DDAttributeKey]];
+                [self addTextAttributes:timer.userInfo[DDAttributeKey]];
             }
             [timer invalidate];
         }
@@ -251,16 +251,16 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param timer    timer
  *  @param multiple The number's multiple.
  */
-- (void)floatNumberHandler:(NSTimer *)timer andMultiple:(int)multiple {
+- (void)floatNumberAnimation:(NSTimer *)timer multiple:(int)multiple {
     NSString *formatStr = timer.userInfo[DDFormatKey] ?: (self.flickerNumberFormatter ? @"%@" : [NSString stringWithFormat:@"%%.%df",(int)log10(multiple)]);
     self.text = [self finalString:@([self.flickerNumber doubleValue]/multiple) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
     if (timer.userInfo[DDAttributeKey]) {
-        [self attributedHandler:timer.userInfo[DDAttributeKey]];
+        [self addTextAttributes:timer.userInfo[DDAttributeKey]];
     }
     if ([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]) {
         self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         if(timer.userInfo[DDAttributeKey]){
-            [self attributedHandler:timer.userInfo[DDAttributeKey]];
+            [self addTextAttributes:timer.userInfo[DDAttributeKey]];
         }
         [timer invalidate];
     }
@@ -271,14 +271,14 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @param attributes The attributed property, it's a attributed dictionary OR array of attributed dictionaries.
  */
-- (void)attributedHandler:(id)attributes {
+- (void)addTextAttributes:(id)attributes {
     if ([attributes isKindOfClass:[NSDictionary class]]) {
         NSRange range = [attributes[DDDictRangeKey] rangeValue];
-        [self addAttributes:attributes[DDDictArrtributeKey] range:range];
+        [self addAttribute:attributes[DDDictArrtributeKey] range:range];
     } else if([attributes isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attribute in attributes) {
             NSRange range = [attribute[DDDictRangeKey] rangeValue];
-            [self addAttributes:attribute[DDDictArrtributeKey] range:range];
+            [self addAttribute:attribute[DDDictArrtributeKey] range:range];
         }
     }
 }
@@ -289,8 +289,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param attri The attributed of the text
  *  @param range The range of the attributed property
  */
-- (void)addAttributes:(NSDictionary *)attri
-                range:(NSRange)range {
+- (void)addAttribute:(NSDictionary *)attri
+               range:(NSRange)range {
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithAttributedString:self.attributedText];
     // handler the out range exception
     if(range.location + range.length <= str.length){
@@ -306,8 +306,8 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return mulitple
  */
-- (int)multipleForNumber:(NSNumber *)number
-            formatString:(NSString *)formatStr {
+- (int)getTheMultipleFormNumber:(NSNumber *)number
+                   formatString:(NSString *)formatStr {
     if([formatStr rangeOfString:@"%@"].location == NSNotFound) {
         if([formatStr rangeOfString:@"%d"].location != NSNotFound) {
             return 0;
@@ -330,6 +330,14 @@ NS_ASSUME_NONNULL_BEGIN
     return 0;
 }
 
+/**
+ *  Get the number string from number-formatter style.
+ *
+ *  @param number    The result number.
+ *  @param formattor The number-formatter style.
+ *
+ *  @return The number string.
+ */
 - (NSString *)stringFromNumber:(NSNumber *)number
                numberFormatter:(NSNumberFormatter *)formattor {
     if(!formattor) {
@@ -340,14 +348,24 @@ NS_ASSUME_NONNULL_BEGIN
     return [formattor stringFromNumber:number];
 }
 
+/**
+ *  The final-string of each frame of flicker animation.
+ *
+ *  @param number    The result number.
+ *  @param formatStr The string-format String.
+ *  @param formatter The number-formatter style.
+ *
+ *  @return The final string.
+ */
 - (NSString *)finalString:(NSNumber *)number
              stringFormat:(NSString *)formatStr
           numberFormatter:(NSNumberFormatter *)formatter {
     NSString *finalString = nil;
     if (formatter) {
+        NSAssert([formatStr rangeOfString:@"%@"].location != NSNotFound, @"The string format type is not matched. Please check your format type if it's not `%%@`. ");
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
     } else {
-        NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"string format type is not matched,please check your format type");
+        NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"The string format type is not matched. Please check your format type if it's `%%@`. ");
         //fixed the bug if use the `%d` format string.
         if ([formatStr rangeOfString:@"%d"].location == NSNotFound)
         {
