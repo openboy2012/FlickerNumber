@@ -231,13 +231,13 @@ NS_ASSUME_NONNULL_BEGIN
         NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
         self.text = [self finalString:@([self.flickerNumber longLongValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         
-        if(timer.userInfo[DDAttributeKey]){
+        if (timer.userInfo[DDAttributeKey]) {
             [self addTextAttributes:timer.userInfo[DDAttributeKey]];
         }
         
-        if([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]){
+        if ([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]) {
             self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
-            if(timer.userInfo[DDAttributeKey]){
+            if (timer.userInfo[DDAttributeKey]) {
                 [self addTextAttributes:timer.userInfo[DDAttributeKey]];
             }
             [timer invalidate];
@@ -259,7 +259,7 @@ NS_ASSUME_NONNULL_BEGIN
     }
     if ([self.flickerNumber longLongValue] >= [timer.userInfo[DDEndNumberKey] longLongValue]) {
         self.text = [self finalString:timer.userInfo[DDResultNumberKey] stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
-        if(timer.userInfo[DDAttributeKey]){
+        if (timer.userInfo[DDAttributeKey]) {
             [self addTextAttributes:timer.userInfo[DDAttributeKey]];
         }
         [timer invalidate];
@@ -314,7 +314,7 @@ NS_ASSUME_NONNULL_BEGIN
         }
         formatStr = [self regexNumberFormat:formatStr];
         NSString *formatNumberString = [NSString stringWithFormat:formatStr,[number floatValue]];
-        if([formatNumberString rangeOfString:@"."].location != NSNotFound){
+        if ([formatNumberString rangeOfString:@"."].location != NSNotFound) {
             NSUInteger length = [[formatNumberString substringFromIndex:[formatNumberString rangeOfString:@"."].location + 1] length];
             float padding = log10f(length < 6 ? length:6);
             number = @([formatNumberString floatValue] + padding);
