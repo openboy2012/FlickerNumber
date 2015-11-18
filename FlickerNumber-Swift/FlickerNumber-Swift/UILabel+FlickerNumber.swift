@@ -382,7 +382,11 @@ public extension UILabel {
             finalString = String(format: format, self.fn_stringFromNumber(number, numberFormatter: numberFormatter!)!)
         } else {
             assert(format.rangeOfString("%@") == nil, "string format type is not matched, please check your format type.")
-            finalString = String(format: format, number.doubleValue)
+            if format.rangeOfString("%d") != nil {
+                finalString = String(format: format, number.longLongValue)
+            } else {
+                finalString = String(format: format, number.doubleValue)
+            }
         }
         return finalString;
     }
@@ -421,6 +425,11 @@ public extension UILabel {
     private func multipleForNumber(number: NSNumber, formatString: String?) -> Int {
         var newNumber = number;
         if formatString != nil && formatString!.rangeOfString("%@") == nil {
+            
+            if formatString!.rangeOfString("%d") != nil {
+                return 0;
+            }
+            
             let fStr: String = self.regexNumberFormat(formatString!)
             let formatNumberStr: String = String(fStr, number.floatValue)
             if formatNumberStr.rangeOfString(".") != nil {
