@@ -233,7 +233,7 @@ public extension UILabel {
         var endNumber: Int64 = number.longLongValue;
 
         //get multiple if number is float & double type
-        let multiple = self.multipleForNumber(number, formatString: format)
+        let multiple = self.getTheMultipleFromNumber(number, formatString: format)
         
         if multiple > 0 {
             endNumber = Int64(number.doubleValue * Double(multiple))
@@ -422,7 +422,7 @@ public extension UILabel {
      
      - returns: The multiple of the number.
      */
-    private func multipleForNumber(number: NSNumber, formatString: String?) -> Int {
+    private func getTheMultipleFromNumber(number: NSNumber, formatString: String?) -> Int {
         var newNumber = number;
         if formatString != nil && formatString!.rangeOfString("%@") == nil {
             
