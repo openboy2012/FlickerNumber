@@ -1,8 +1,8 @@
 # FlickerNumber
-Flicker a number like alipay use UILabel category. It can be wonderful when use the advanced method.   
-Now, flicker number is co
-Version 1.0 is for Objective-C code.
-Version 2.0 is for Swift Code.
+Flicker a number like alipay use UILabel category. It can be wonderful when use the advanced method.
+
+## Swift Compatibility
+Now, Version 1.0 is code by Objective-C and Version 2.0 is code by Swift.
 
 ##Effects
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
@@ -16,7 +16,7 @@ Version 2.0 is for Swift Code.
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/YYText/master/LICENSE)&nbsp;
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%205.1.1%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;
-[![Build Status](https://travis-ci.org/openboy2012/FlickerNumber.svg?branch=master)](https://travis-ci.org/openboy2012/FlickerNumber)
+[![Build Status](https://travis-ci.org/openboy2012/FlickerNumber.svg?branch=master)](https://travis-ci.org/openboy2012/FlickerNumber)   
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
 
