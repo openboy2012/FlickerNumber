@@ -6,4 +6,4 @@ xcode_project: FlickerNumber.xcodeproj
 xcode_scheme: FlickerNumber
 
 script:
-- xctool -project Framework/YYModel.xcodeproj -scheme YYModel build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+- xctool -project FlickerNumber.xcodeproj -scheme FlickerNumber build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
