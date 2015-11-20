@@ -6,4 +6,4 @@ xcode_project: FlickerNumber.xcodeproj
 xcode_scheme: FlickerNumber
 
 script:
-- xctool -project FlickerNumber.xcodeproj -scheme FlickerNumber build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+- xctool -workspace FlickerNumber.xcworkspace -scheme FlickerNumber build -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
