@@ -2,7 +2,7 @@
 Flicker a number like alipay use UILabel category. It can be wonderful when use the advanced method.
 
 ## Swift Compatibility
-Now, Version 1.0 is code by Objective-C and Version 2.0 is code by Swift.
+Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
 
 ##Effects
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
