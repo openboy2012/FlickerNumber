@@ -15,8 +15,10 @@ Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
 
 [![Build Status](https://travis-ci.org/openboy2012/FlickerNumber.svg?branch=master)](https://travis-ci.org/openboy2012/FlickerNumber)
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/ibireme/YYText/master/LICENSE)&nbsp;   
-For Objective-C:[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%205.1.1%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
-For Swift:[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
+###Code for Objective-C
+[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%205.1.1%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
+###Code for Swift
+[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
    
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
