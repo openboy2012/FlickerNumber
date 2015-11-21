@@ -1,9 +1,6 @@
 language: objective-c
-osx_image: xcode7.1
 xcode_workspace: FlickerNumber.xcworkspace
-xcode_scheme: FlickerNumber
-xcode_scheme: FlickerNumber-Swift
 
 script:
 - xctool -workspace FlickerNumber.xcworkspace -scheme FlickerNumber build -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-xcodebuild  -workspace FlickerNumber.xcworkspace -scheme FlickerNumber-Swift -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xctool -workspace FlickerNumber.xcworkspace -scheme FlickerNumber-Swift build -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
