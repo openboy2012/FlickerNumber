@@ -1,4 +1,5 @@
 language: objective-c
+osx-image: xcode7.1
 xcode_workspace: FlickerNumber.xcworkspace
 
 script:
