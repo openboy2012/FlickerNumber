@@ -1,4 +1,6 @@
 language: objective-c
 osx_image: xcode7.1
 
-script: -xctool -project FlickerNumber.xcodeproj -scheme FlickerNumber -destination 'platform=iOS Simulator,name=iPhone 6,OS=lastest' ONLY_ACTIVE_ARCH=NO; -xctool -project FlickerNumber-Swift.xcodeproj -scheme FlickerNumber-Swift -destination 'platform=iOS Simulator,name=iPhone 6,OS=lastest' ONLY_ACTIVE_ARCH=NO;
+script: 
+- xctool -project FlickerNumber.xcodeproj -scheme FlickerNumber -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' ONLY_ACTIVE_ARCH=NO; 
+- xctool -project FlickerNumber-Swift/FlickerNumber-Swift.xcodeproj -scheme FlickerNumber-Swift -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' ONLY_ACTIVE_ARCH=NO;
