@@ -1,6 +1,5 @@
 language: objective-c
 osx-image: xcode7.1
-
 xcode_workspace: FlickerNumber.xcworkspace
 
-script: xcodebuild -workspace FlickerNumber.xcworkspace -scheme FlickerNumber-Swift -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' build ONLY_ACTIVE_ARCH=NO xcodebuild -workspace FlickerNumber.xcworkspace -scheme FlickerNumber -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=latest' build ONLY_ACTIVE_ARCH=NO
+script: xcodebuild -workspace FlickerNumber.xcworkspace -scheme FlickerNumber-Swift -sdk iphonesimulator9.1 -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' build ONLY_ACTIVE_ARCH=NO; xcodebuild -workspace FlickerNumber.xcworkspace -scheme FlickerNumber -sdk iphonesimulator9.1 -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' build ONLY_ACTIVE_ARCH=NO;
