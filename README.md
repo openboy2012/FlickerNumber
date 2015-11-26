@@ -18,7 +18,7 @@ Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
 ###Code for Objective-C
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%205.1.1%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
 ###Code for Swift
-[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swfit/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
+[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
    
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
@@ -42,21 +42,21 @@ for example:
     [super viewWillAppear:animated];
     
     if([self.title isEqualToString:@"Flicker A Integer Number"]){
-        [self.lblFlicker dd_setNumber:@(7654321)];
+        [self.lblFlicker fn_setNumber:@(7654321)];
     }else if([self.title isEqualToString:@"Flicker A Float Number"]){
-        [self.lblFlicker dd_setNumber:@(123.982)];
+        [self.lblFlicker fn_setNumber:@(123.982)];
     }else if([self.title isEqualToString:@"Flicker A Format Number"]){
-        [self.lblFlicker dd_setNumber:@(75.212) format:@"￥%.2f"];
+        [self.lblFlicker fn_setNumber:@(75.212) format:@"￥%.2f"];
     }else if([self.title isEqualToString:@"Flicker A Attribute Number"]){
         id attributes = [NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
                                                      range:NSMakeRange(0, 1)];
-        [self.lblFlicker dd_setNumber:@(123.45) attributes:attributes];
+        [self.lblFlicker fn_setNumber:@(123.45) attributes:attributes];
     }else{
         id attributes = @[[NSDictionary dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
                                                        range:NSMakeRange(0, 1)],
                           [NSDictionary dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                        range:NSMakeRange(1, 3)]];
-        [self.lblFlicker dd_setNumber:@(123.45) duration:1.0f format:@"￥%.2f" attributes:attributes];
+        [self.lblFlicker fn_setNumber:@(123.45) duration:1.0f format:@"￥%.2f" attributes:attributes];
     }
 }
 
