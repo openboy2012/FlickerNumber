@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:FlickerNumber-Swift/FlickerNumber-Swift.xcodeproj">
+      location = "group:Swift/FlickerNumber-Swift.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:FlickerNumber.xcodeproj">
+      location = "group:Objective-C/FlickerNumber.xcodeproj">
    </FileRef>
 </Workspace>
