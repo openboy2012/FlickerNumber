@@ -365,10 +365,11 @@ NS_ASSUME_NONNULL_BEGIN
         NSAssert([formatStr rangeOfString:@"%@"].location != NSNotFound, @"The string format type is not matched. Please check your format type if it's not `%%@`. ");
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
     } else {
-        NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"The string format type is not matched. Please check your format type if it's `%%@`. ");
+//        NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"The string format type is not matched. Please check your format type if it's `%%@`. ");
         //fixed the bug if use the `%d` format string.
-        if ([formatStr rangeOfString:@"%d"].location == NSNotFound)
-        {
+        if ([formatStr rangeOfString:@"%@"].location != NSNotFound) {
+            finalString = [NSString stringWithFormat:formatStr,number];
+        }else if ([formatStr rangeOfString:@"f"].location != NSNotFound){
             finalString = [NSString stringWithFormat:formatStr,[number doubleValue]];
         }
         else

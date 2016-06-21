@@ -26,6 +26,8 @@
     [dataList addObject:@"Flicker A Format Number"];
     [dataList addObject:@"Flicker An Attribute Number"];
     [dataList addObject:@"Flicker Number All"];
+    [dataList addObject:@"Test Bug 1, fixed"];
+    [dataList addObject:@"Test Bug 2, fixed"];
 }
 
 - (void)didReceiveMemoryWarning {
