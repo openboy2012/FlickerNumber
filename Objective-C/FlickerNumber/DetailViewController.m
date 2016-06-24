@@ -57,11 +57,7 @@
             id attributes = [NSDictionary fn_dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
                                                             range:NSMakeRange(0, 1)];
             [self.lblFlicker fn_setNumber:@(1888.88) formatter:nil attributes:attributes];
-        }else if([self.title isEqualToString:@"Test Bug 1, fixed"]){
-            [self.lblFlicker fn_setNumber:@(25000) format:@"￥%@"];
-        }else if([self.title isEqualToString:@"Test Bug 2, fixed"]){
-            [self.lblFlicker fn_setNumber:@(25000) format:@"%.3f" attributes:nil];
-        }else {
+        }else{
             id attributes = @[[NSDictionary fn_dictionaryWithAttribute:@{NSFontAttributeName:[UIFont systemFontOfSize:12.0f]}
                                                               range:NSMakeRange(0, 1)],
                               [NSDictionary fn_dictionaryWithAttribute:@{NSForegroundColorAttributeName:[UIColor redColor]}
