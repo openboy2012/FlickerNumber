@@ -177,7 +177,7 @@ NS_ASSUME_NONNULL_BEGIN
     unsigned long long endNumber = [number unsignedLongLongValue];
     
     //get multiple if number is double type
-    int multiple = [self getTheMultipleFormNumber:number formatString:formatStr];
+    int multiple = [self getTheMultipleFromNumber:number formatString:formatStr];
     if (multiple > 0)
         endNumber = [number doubleValue] * multiple;
     
@@ -225,9 +225,9 @@ NS_ASSUME_NONNULL_BEGIN
     
     
     int multiple = [timer.userInfo[DDMultipleKey] intValue];
-    if(multiple > 0) {
+    if (multiple > 0) {
         [self floatNumberAnimation:timer multiple:multiple];
-    }else {
+    } else {
         NSString *formatStr = timer.userInfo[DDFormatKey]?:(self.flickerNumberFormatter?@"%@":@"%.0f");
         self.text = [self finalString:@([self.flickerNumber longLongValue]) stringFormat:formatStr numberFormatter:self.flickerNumberFormatter];
         
@@ -306,7 +306,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return mulitple
  */
-- (int)getTheMultipleFormNumber:(NSNumber *)number
+- (int)getTheMultipleFromNumber:(NSNumber *)number
                    formatString:(NSString *)formatStr {
     if([formatStr rangeOfString:@"%@"].location == NSNotFound) {
         if([formatStr rangeOfString:@"%d"].location != NSNotFound) {
@@ -366,7 +366,7 @@ NS_ASSUME_NONNULL_BEGIN
         finalString = [NSString stringWithFormat:formatStr,[self stringFromNumber:number numberFormatter:formatter]];
     } else {
         NSAssert([formatStr rangeOfString:@"%@"].location == NSNotFound, @"The string format type is not matched. Please check your format type if it's `%%@`. ");
-        //fixed the bug if use the `%d` format string.
+        // fixed the bug if use the `%d` format string.
         if ([formatStr rangeOfString:@"%d"].location == NSNotFound)
         {
             finalString = [NSString stringWithFormat:formatStr,[number doubleValue]];
