@@ -4,20 +4,20 @@ Flicker a number like alipay use UILabel category. It can be wonderful when use 
 ## Swift Compatibility
 Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
 
-##Effects
+## Effects
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker an attribute number.gif" width="276"/>
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a float number.gif" width="276"/>
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker an integer number.gif" width="276"/>
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker number.gif" width="276"/>
 
-##Installation
+## Installation
 
 [![Build Status](https://travis-ci.org/openboy2012/FlickerNumber.svg?branch=master)](https://travis-ci.org/openboy2012/FlickerNumber)
 [![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/openboy2012/FlickerNumber/master/LICENSE)&nbsp;   
-###Code for Objective-C
+### Code for Objective-C
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%206.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
-###Code for Swift
+### Code for Swift
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
    
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
