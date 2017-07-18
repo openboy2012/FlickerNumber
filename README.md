@@ -15,7 +15,8 @@ Version 2.1 compatibility the Swift 3.0.
 ## Installation
 
 [![Build Status](https://travis-ci.org/openboy2012/FlickerNumber.svg?branch=master)](https://travis-ci.org/openboy2012/FlickerNumber)
-[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/openboy2012/FlickerNumber/master/LICENSE)&nbsp;   
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://raw.githubusercontent.com/openboy2012/FlickerNumber/master/LICENSE)&nbsp; 
+[![codebeat badge](https://codebeat.co/badges/47972caa-32b3-4296-8fc5-9061f0ebe87d)](https://codebeat.co/projects/github-com-openboy2012-flickernumber-master)
 ### Code for Objective-C
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%206.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
 ### Code for Swift
