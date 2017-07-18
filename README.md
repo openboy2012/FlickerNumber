@@ -3,6 +3,7 @@ Flicker a number like alipay use UILabel category. It can be wonderful when use 
 
 ## Swift Compatibility
 Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
+Version 2.1 compatibility the Swift 3.0.
 
 ## Effects
 <img src="http://7fvget.com1.z0.glb.clouddn.com/flicker a format number.gif" width="276"/>
@@ -18,7 +19,7 @@ Now, Version 1.0 is coding by Objective-C and Version 2.0 is coding by Swift.
 ### Code for Objective-C
 [![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber/badge.png)](http://cocoadocs.org/docsets/FlickerNumber/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%206.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)   
 ### Code for Swift
-[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%208.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
+[![Version](http://cocoapod-badges.herokuapp.com/v/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp; [![Platform](http://cocoapod-badges.herokuapp.com/p/FlickerNumber-Swift/badge.png)](http://cocoadocs.org/docsets/FlickerNumber-Swift/)&nbsp;[![Support](https://img.shields.io/badge/support-iOS%209.0%2B%20-blue.svg?style=flat)](https://www.apple.com/nl/ios/)&nbsp;   
    
 FlickerNumber is available through [CocoaPods](http://cocoapods.org), to install
 it simply add the following line to your Podfile:
@@ -244,6 +245,7 @@ for example:
 ```
 
 ## Updates
+- [2.1] compatibility the Swift 3.0.
 - [2.0] the flicker number for swift.
 - [1.1] rename the method then they are more memorise.
 - [1.0] add the long long type integer or double number flicker function.
@@ -251,9 +253,12 @@ for example:
 - [0.1] add the flicker number kit.
 
 ## Requirements
-
+Objective-C Version:
 - Xcode 7.1
-- iOS 6.0 
+- iOS 6.0         
+Swift Version:
+- Xcode 8.3
+- iOS 9.0
 
 ## Author
 
