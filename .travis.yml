@@ -2,5 +2,5 @@ language: objective-c
 osx_image: xcode8.3
 
 script: 
-- xcodebuild -workspace FlickerNumber.xcworkspace -scheme "FlickerNumber" -destination "OS=10.3.1,name=iPhone 7 Plus" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty 
-- xcodebuild -workspace FlickerNumber.xcworkspace -scheme "FlickerNumber" -destination "OS=10.3.1,name=iPhone 7 Plus" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty
+- xcodebuild -workspace FlickerNumber.xcworkspace -scheme "FlickerNumber" -destination "OS=10.3.1,name=iPhone 7 Plus" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty; 
+- xcodebuild -workspace FlickerNumber.xcworkspace -scheme "FlickerNumber-Swift" -destination "OS=10.3.1,name=iPhone 7 Plus" -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
