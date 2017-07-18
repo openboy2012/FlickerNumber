@@ -48,7 +48,7 @@
 - (IBAction)valueChanged:(id)sender{
     if([(UISwitch *)sender isOn]){
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker fn_setNumber:@(1.00) formatter:nil];
+            [self.lblFlicker fn_setNumber:@(88075998) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker fn_setNumber:@(123456789.123456) formatter:nil];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){
@@ -69,7 +69,7 @@
         }
     }else{
         if([self.title isEqualToString:@"Flicker An Integer Number"]){
-            [self.lblFlicker fn_setNumber:@(1)];
+            [self.lblFlicker fn_setNumber:@(88075998)];
         }else if([self.title isEqualToString:@"Flicker A Float Number"]){
             [self.lblFlicker fn_setNumber:@(987654321.987654)];
         }else if([self.title isEqualToString:@"Flicker A Format Number"]){

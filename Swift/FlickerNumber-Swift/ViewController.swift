@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 //        label?.fn_setNumber(1234.1234);
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.valueChanged(self.fnSwitch)
     }
@@ -28,8 +28,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func valueChanged(sender : AnyObject?) {
-        if ((sender as! UISwitch).on) {
+    @IBAction func valueChanged(_ sender : AnyObject?) {
+        if ((sender as! UISwitch).isOn) {
             if self.title == "Flicker An Integer Number" {
                 label?.fn_setNumber(1234442218, formatter: nil)
             } else if self.title == "Flicker A Float Number" {
@@ -37,21 +37,21 @@ class ViewController: UIViewController {
             } else if self.title == "Flicker A Format Number" {
                 label?.fn_setNumber(1234512, format:"$%@", formatter: nil)
             } else if self.title == "Flicker An Attribute Number" {
-                let colorDict = NSDictionary.init(object: UIColor.redColor(), forKey: NSForegroundColorAttributeName)
+                let colorDict = NSDictionary.init(object: UIColor.red, forKey: NSForegroundColorAttributeName as NSCopying)
                 let range = NSMakeRange(2, 2)
                 let attribute = NSDictionary.fn_dictionary(colorDict , range: range)
                 label?.fn_setNumber(12345.212, formatter: nil, attributes: attribute)
             } else {
-                let colorDict = NSDictionary.init(object: UIColor.redColor(), forKey: NSForegroundColorAttributeName)
+                let colorDict = NSDictionary.init(object: UIColor.red, forKey: NSForegroundColorAttributeName as NSCopying)
                 let colorRange = NSMakeRange(1, 2)
                 let colorAttribute = NSDictionary.fn_dictionary(colorDict , range: colorRange)
-                let fontDict = NSDictionary.init(object: UIFont.systemFontOfSize(12), forKey: NSFontAttributeName)
+                let fontDict = NSDictionary.init(object: UIFont.systemFont(ofSize: 12), forKey: NSFontAttributeName as NSCopying)
                 let fontRange = NSMakeRange(3, 4)
                 let fontAttribute = NSDictionary.fn_dictionary(fontDict, range: fontRange)
                 let attributes = NSArray.init(objects: colorAttribute, fontAttribute)
-                let numberFormatter = NSNumberFormatter()
-                numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-                numberFormatter.formatterBehavior = NSNumberFormatterBehavior.Behavior10_4
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = NumberFormatter.Style.currency
+                numberFormatter.formatterBehavior = NumberFormatter.Behavior.behavior10_4
                 label?.fn_setNumber(123456.789, format:"%@", formatter:numberFormatter, attributes: attributes)
             }
 
@@ -63,15 +63,15 @@ class ViewController: UIViewController {
             } else if self.title == "Flicker A Format Number" {
                 label?.fn_setNumber(91, format:"$%.2f")
             } else if self.title == "Flicker An Attribute Number" {
-                let colorDict = NSDictionary.init(object: UIColor.redColor(), forKey: NSForegroundColorAttributeName)
+                let colorDict = NSDictionary.init(object: UIColor.red, forKey: NSForegroundColorAttributeName as NSCopying)
                 let range = NSMakeRange(2, 2)
                 let attribute = NSDictionary.fn_dictionary(colorDict , range: range)
                 label?.fn_setNumber(48273.38, attributes: attribute)
             } else {
-                let colorDict = NSDictionary.init(object: UIColor.redColor(), forKey: NSForegroundColorAttributeName)
+                let colorDict = NSDictionary.init(object: UIColor.red, forKey: NSForegroundColorAttributeName as NSCopying)
                 let colorRange = NSMakeRange(1, 2)
                 let colorAttribute = NSDictionary.fn_dictionary(colorDict , range: colorRange)
-                let fontDict = NSDictionary.init(object: UIFont.systemFontOfSize(12), forKey: NSFontAttributeName)
+                let fontDict = NSDictionary.init(object: UIFont.systemFont(ofSize: 12), forKey: NSFontAttributeName as NSCopying)
                 let fontRange = NSMakeRange(3, 4)
                 let fontAttribute = NSDictionary.fn_dictionary(fontDict, range: fontRange)
                 let attributes = NSArray.init(objects: colorAttribute, fontAttribute)

@@ -24,7 +24,7 @@ public extension UILabel {
      
      - parameter number: The number for flicker animation, can't be `nil`.
      */
-    public func fn_setNumber(number: NSNumber) {
+    public func fn_setNumber(_ number: NSNumber) {
         self.fn_setNumber(number, format: nil)
     }
     
@@ -34,7 +34,7 @@ public extension UILabel {
      - parameter number:    The number for flicker animation.
      - parameter formatter: The number-formatter style. If this parameter is `nil`, the method should use the default number-formatter style -- `NSNumberFormatterDecimalStyle`, so `1000000` will be '1,000,000'.
      */
-    public func fn_setNumber(number: NSNumber, formatter: NSNumberFormatter?) {
+    public func fn_setNumber(_ number: NSNumber, formatter: NumberFormatter?) {
         self.fn_setNumber(number, formatter:formatter, attributes: nil)
     }
     
@@ -44,7 +44,7 @@ public extension UILabel {
      - parameter number:   The number for flicker animation.
      - parameter duration: The flicker animation during time, can't be a minus.
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval) {
         self.fn_setNumber(number, duration: duration, format: nil)
     }
 
@@ -55,7 +55,7 @@ public extension UILabel {
      - parameter duration:  The flicker animation during time.
      - parameter formatter: The number-formatter style.
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, formatter: NSNumberFormatter?) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, formatter: NumberFormatter?) {
         self.fn_setNumber(number, duration: duration, formatter: formatter, attributes: nil)
     }
     
@@ -65,7 +65,7 @@ public extension UILabel {
      - parameter number: The number for flicker animation.
      - parameter format: The string-format String. If you set this parameter is `nil`, the method is same to `fn_setNumber:`.
      */
-    public func fn_setNumber(number: NSNumber, format: String?) {
+    public func fn_setNumber(_ number: NSNumber, format: String?) {
         self.fn_setNumber(number, format: format, attributes: nil)
     }
     
@@ -76,7 +76,7 @@ public extension UILabel {
      - parameter format:    The string-format String.
      - parameter formatter: The number-formatter style.
      */
-    public func fn_setNumber(number: NSNumber, format: String?, formatter: NSNumberFormatter?) {
+    public func fn_setNumber(_ number: NSNumber, format: String?, formatter: NumberFormatter?) {
         self.fn_setNumber(number, format: format, formatter: formatter, attributes: nil)
     }
     
@@ -86,7 +86,7 @@ public extension UILabel {
      - parameter number:     The number for flicker animation.
      - parameter attributes: The attributed number set(a dictionary OR array of dictionaries), character attributes for text. Only can attributed the number because there are no string-format String. Use this parameter the number text can be colorful and wonderful. If you set this parameter is `nil`, the same to method `fn_setNumber:`.
      */
-    public func fn_setNumber(number: NSNumber, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, attributes: attributes)
     }
     
@@ -97,7 +97,7 @@ public extension UILabel {
      - parameter formatter:  The number-formatter style.
      - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
      */
-    public func fn_setNumber(number: NSNumber, formatter: NSNumberFormatter?, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, formatter: NumberFormatter?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, formatter: formatter, attributes: attributes)
     }
     
@@ -108,7 +108,7 @@ public extension UILabel {
      - parameter format:     The string-format String.
      - parameter attributes: The attributed string set(a dictionary OR array of dictionaries). You can attributed(s) the number or string-format String.
      */
-    public func fn_setNumber(number: NSNumber, format: String?, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, format: String?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: 1.0, format: format, attributes: nil)
     }
     
@@ -120,7 +120,7 @@ public extension UILabel {
      - parameter formatter:  The number-formatter style.
      - parameter attributes: The attributed string set(a dictionary OR array of dictionaries).You can attributed(s) the number or string-format String.
      */
-    public func fn_setNumber(number: NSNumber, format: String?, formatter: NSNumberFormatter?, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, format: String?, formatter: NumberFormatter?, attributes: AnyObject?) {
         if formatter == nil {
             self.fn_setNumber(number, duration: 1.0, format: format, numberFomatter: fn_defaultNumberFormatter(), attributes: attributes)
         } else {
@@ -135,7 +135,7 @@ public extension UILabel {
      - parameter duration: The flicker animation during time.
      - parameter format:   The number-formatter style.
      */
-    public func fn_setNumber(nubmer: NSNumber, duration: NSTimeInterval, format: String?) {
+    public func fn_setNumber(_ nubmer: NSNumber, duration: TimeInterval, format: String?) {
         self.fn_setNumber(nubmer, duration: duration, format: format, numberFomatter: nil, attributes: nil)
     }
     
@@ -147,7 +147,7 @@ public extension UILabel {
      - parameter format:    The string-format String.
      - parameter formatter: The number-formatter style.
      */
-    public func fn_setNumber(nubmer: NSNumber, duration: NSTimeInterval, format: String?, formatter: NSNumberFormatter?) {
+    public func fn_setNumber(_ nubmer: NSNumber, duration: TimeInterval, format: String?, formatter: NumberFormatter?) {
         if formatter == nil {
             self.fn_setNumber(nubmer, duration: duration, format: format, numberFomatter: fn_defaultNumberFormatter(), attributes: nil)
         } else {
@@ -162,7 +162,7 @@ public extension UILabel {
      - parameter duration:   The flicker animation during time.
      - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: duration, format: nil, attributes: attributes);
     }
     
@@ -174,7 +174,7 @@ public extension UILabel {
      - parameter formatter:  The number-formatter style.
      - parameter attributes: The attributed number set(a dictionary OR array of dictionaries).
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, formatter: NSNumberFormatter?, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, formatter: NumberFormatter?, attributes: AnyObject?) {
         if formatter == nil {
             self.fn_setNumber(number, duration: duration, format: nil, numberFomatter: fn_defaultNumberFormatter(), attributes: attributes)
         } else {
@@ -190,7 +190,7 @@ public extension UILabel {
      - parameter format:     The string-format String.
      - parameter attributes: The attributed string set(a dictionary OR array of dictionaries). You can set string-format String OR number attributes both.
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, format: String?, attributes: AnyObject?) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, format: String?, attributes: AnyObject?) {
         self.fn_setNumber(number, duration: duration, format: format, numberFomatter: nil, attributes: attributes)
     }
     
@@ -203,16 +203,16 @@ public extension UILabel {
      - parameter numberFomatter: The number-formatter style.
      - parameter attributes:     The attributed string set(a dictionary OR array of dictionaries).
      */
-    public func fn_setNumber(number: NSNumber, duration: NSTimeInterval, format: String?, numberFomatter: NSNumberFormatter?, attributes: AnyObject? ) {
+    public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, format: String?, numberFomatter: NumberFormatter?, attributes: AnyObject? ) {
         // check the number type
-        assert(number.isKindOfClass(NSNumber), "Number Type is not matched, exit")
-        if(!number.isKindOfClass(NSNumber)) {
-            text = String(number)
+        assert(number.isKind(of: NSNumber.self), "Number Type is not matched, exit")
+        if(!number.isKind(of: NSNumber.self)) {
+            text = String(describing: number)
             return
         }
         
         //limit duration is postive number and it is large than 0.3
-        var durationTime : NSTimeInterval = fabs(duration) < 0.3 ? 0.3 : fabs(duration)
+        var durationTime : TimeInterval = fabs(duration) < 0.3 ? 0.3 : fabs(duration)
         
         self.fn_timer?.invalidate()
 
@@ -230,7 +230,7 @@ public extension UILabel {
         userDict.setValue(beginNumber, forKey: beginNumberName)
         
         set_fnNumber(0)
-        var endNumber: Int64 = number.longLongValue;
+        var endNumber: Int64 = number.int64Value;
 
         //get multiple if number is float & double type
         let multiple = self.getTheMultipleFromNumber(number, formatString: format)
@@ -245,13 +245,13 @@ public extension UILabel {
         }
         
         userDict.setValue(multiple, forKey: multipleName)
-        userDict.setValue(NSNumber(longLong: endNumber), forKey: endNumberName)
+        userDict.setValue(NSNumber(value: endNumber as Int64), forKey: endNumberName)
         
         if (Double(endNumber) * frequency)/durationTime < 1.0 {
             durationTime = durationTime * 0.3
         }
         let rangeNumber = (Double(endNumber) * frequency)/durationTime
-        userDict.setValue(NSNumber(double: rangeNumber), forKey: rangeIntegerName)
+        userDict.setValue(NSNumber(value: rangeNumber as Double), forKey: rangeIntegerName)
         
         if attributes != nil {
             userDict.setValue(attributes, forKey: attributeName)
@@ -262,35 +262,35 @@ public extension UILabel {
             fn_setFormatter(numberFomatter!)
         }
         
-        fn_setTimer(NSTimer.scheduledTimerWithTimeInterval(frequency,
+        fn_setTimer(Timer.scheduledTimer(timeInterval: frequency,
             target: self,
-            selector: "flickerAnimation:",
+            selector: #selector(UILabel.flickerAnimation(_:)),
             userInfo: userDict,
             repeats: true))
         
-        NSRunLoop.currentRunLoop().addTimer(self.fn_timer!, forMode: NSRunLoopCommonModes)
+        RunLoop.current.add(self.fn_timer!, forMode: RunLoopMode.commonModes)
     }
     
     //Flicker animation method implemetation.
-    public func flickerAnimation(timer: NSTimer) -> Void {
-        if timer.userInfo?.valueForKey(rangeIntegerName)?.floatValue >= 1.0 {
-            let rangeInteger = timer.userInfo?.valueForKey(rangeIntegerName)?.longLongValue;
-            let resultInteger = (self.fn_number?.longLongValue)! + rangeInteger!;
-            set_fnNumber(NSNumber(longLong: resultInteger))
+    public func flickerAnimation(_ timer: Timer) -> Void {
+        if ((timer.userInfo as AnyObject).value(forKey: rangeIntegerName) as AnyObject).floatValue >= 1.0 {
+            let rangeInteger = ((timer.userInfo as AnyObject).value(forKey: rangeIntegerName) as AnyObject).int64Value;
+            let resultInteger = (self.fn_number?.int64Value)! + rangeInteger!;
+            set_fnNumber(NSNumber(value: resultInteger as Int64))
         } else {
-            let rangeInteger = timer.userInfo?.valueForKey(rangeIntegerName)?.floatValue;
+            let rangeInteger = ((timer.userInfo as AnyObject).value(forKey: rangeIntegerName) as AnyObject).floatValue;
             let resultInteger = (self.fn_number?.floatValue)! + rangeInteger!;
-            set_fnNumber(NSNumber(float: resultInteger))
+            set_fnNumber(NSNumber(value: resultInteger as Float))
         }
         
-        let multiple = timer.userInfo?.valueForKey(multipleName)?.intValue
+        let multiple = ((timer.userInfo as AnyObject).value(forKey: multipleName) as AnyObject).int32Value
         
-        if multiple > 0 {
+        if multiple! > 0 {
             self.fn_finalNumberDoubleType(timer, multiple: Int(multiple!))
         } else {
             var formatStr: String = String()
-            if timer.userInfo?.valueForKey(formatName) != nil {
-                formatStr = timer.userInfo?.valueForKey(formatName) as! String
+            if (timer.userInfo as AnyObject).value(forKey: formatName) != nil {
+                formatStr = (timer.userInfo as AnyObject).value(forKey: formatName) as! String
             }
             if formatStr.isEmpty {
                 if self.fn_formatter != nil {
@@ -301,22 +301,22 @@ public extension UILabel {
             }
             self.text = self.fn_finalNumber(self.fn_number!, format:formatStr, numberFormatter: self.fn_formatter)
             
-            let attributes = timer.userInfo?.valueForKey(attributeName)
+            let attributes = (timer.userInfo as AnyObject).value(forKey: attributeName)
             
             if attributes != nil {
-                self.drawAttributes(attributes!)
+                self.drawAttributes(attributes! as AnyObject)
             }
             
-            let endNumber : NSNumber = timer.userInfo?.valueForKey(endNumberName) as! NSNumber
+            let endNumber : NSNumber = (timer.userInfo as AnyObject).value(forKey: endNumberName) as! NSNumber
             
-            if self.fn_number?.longLongValue >= endNumber.longLongValue {
-                let resultNumber: NSNumber = timer.userInfo?.valueForKey(resultNumberName) as! NSNumber
+            if (self.fn_number?.int64Value)! >= endNumber.int64Value {
+                let resultNumber: NSNumber = (timer.userInfo as AnyObject).value(forKey: resultNumberName) as! NSNumber
                 self.text = self.fn_finalNumber(resultNumber, format:formatStr, numberFormatter: self.fn_formatter)
                 
-                let attributes = timer.userInfo?.valueForKey(attributeName)
+                let attributes = (timer.userInfo as AnyObject).value(forKey: attributeName)
                 
                 if attributes != nil {
-                    self.drawAttributes(attributes!)
+                    self.drawAttributes(attributes! as AnyObject)
                 }
                 self.fn_timer?.invalidate()
             }
@@ -324,18 +324,18 @@ public extension UILabel {
     }
     
     //Get the default number-formatter style.
-    private func fn_defaultNumberFormatter() -> NSNumberFormatter {
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        numberFormatter.formatterBehavior = NSNumberFormatterBehavior.BehaviorDefault
+    fileprivate func fn_defaultNumberFormatter() -> NumberFormatter {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        numberFormatter.formatterBehavior = NumberFormatter.Behavior.default
         return numberFormatter;
     }
     
     //Show the animation when the number is double type.
-    private func fn_finalNumberDoubleType(timer: NSTimer, multiple: Int) {
+    fileprivate func fn_finalNumberDoubleType(_ timer: Timer, multiple: Int) {
         var formatStr: String = String()
-        if timer.userInfo?.valueForKey(formatName) != nil {
-            formatStr = timer.userInfo?.valueForKey(formatName) as! String
+        if (timer.userInfo as AnyObject).value(forKey: formatName) != nil {
+            formatStr = (timer.userInfo as AnyObject).value(forKey: formatName) as! String
         }
         if formatStr.isEmpty {
             if self.fn_formatter != nil {
@@ -346,44 +346,44 @@ public extension UILabel {
         }
         let flickerNumber = (self.fn_number?.doubleValue)! / Double(multiple)
         
-        self.text = self.fn_finalNumber(flickerNumber, format:formatStr, numberFormatter: self.fn_formatter)
+        self.text = self.fn_finalNumber(NSNumber(value:flickerNumber as Double), format:formatStr, numberFormatter: self.fn_formatter)
         
-        let attributes = timer.userInfo?.valueForKey(attributeName)
+        let attributes = (timer.userInfo as AnyObject).value(forKey: attributeName)
         
         if attributes != nil {
-            self.drawAttributes(attributes!)
+            self.drawAttributes(attributes! as AnyObject)
         }
         
-        let endNumber: NSNumber = timer.userInfo?.valueForKey(endNumberName) as! NSNumber
+        let endNumber: NSNumber = (timer.userInfo as AnyObject).value(forKey: endNumberName) as! NSNumber
         
-        if self.fn_number?.longLongValue >= endNumber.longLongValue {
-            let resultNumber: NSNumber = timer.userInfo?.valueForKey(resultNumberName) as! NSNumber
+        if (self.fn_number?.int64Value)! >= endNumber.int64Value {
+            let resultNumber: NSNumber = (timer.userInfo as AnyObject).value(forKey: resultNumberName) as! NSNumber
             
             self.text = self.fn_finalNumber(resultNumber, format:formatStr, numberFormatter: self.fn_formatter)
             
-            let attributes = timer.userInfo?.valueForKey(attributeName)
+            let attributes = (timer.userInfo as AnyObject).value(forKey: attributeName)
             
             if attributes != nil {
-                self.drawAttributes(attributes!)
+                self.drawAttributes(attributes! as AnyObject)
             }
             self.fn_timer?.invalidate()
         }
     }
     
     //Get the string from number with number-formatter style.
-    private func fn_stringFromNumber(number: NSNumber, numberFormatter: NSNumberFormatter) -> String? {
-           return numberFormatter.stringFromNumber(number)
+    fileprivate func fn_stringFromNumber(_ number: NSNumber, numberFormatter: NumberFormatter) -> String? {
+           return numberFormatter.string(from: number)
     }
     
     //Get the result string to do animation.
-    private func fn_finalNumber(number : NSNumber, format: String, numberFormatter: NSNumberFormatter?) -> String? {
+    fileprivate func fn_finalNumber(_ number : NSNumber, format: String, numberFormatter: NumberFormatter?) -> String? {
         var finalString = String()
         if numberFormatter != nil {
             finalString = String(format: format, self.fn_stringFromNumber(number, numberFormatter: numberFormatter!)!)
         } else {
-            assert(format.rangeOfString("%@") == nil, "string format type is not matched, please check your format type.")
-            if format.rangeOfString("%d") != nil {
-                finalString = String(format: format, number.longLongValue)
+            assert(format.range(of: "%@") == nil, "string format type is not matched, please check your format type.")
+            if format.range(of: "%d") != nil {
+                finalString = String(format: format, number.int64Value)
             } else {
                 finalString = String(format: format, number.doubleValue)
             }
@@ -392,21 +392,21 @@ public extension UILabel {
     }
     
     //Add the attributes into the mutable attributed string.
-    private func drawAttributes(attributes: AnyObject) -> Void {
-        if attributes.isKindOfClass(NSDictionary) {
-            let range = attributes.valueForKey(fnRangeName)?.rangeValue
-            let attribute = attributes.valueForKey(fnAttributeName)
-            self.addAttributes(attribute!, range : range!)
-        } else if attributes.isKindOfClass(NSArray) {
+    fileprivate func drawAttributes(_ attributes: AnyObject) -> Void {
+        if attributes.isKind(of: NSDictionary.self) {
+            let range = (attributes.value(forKey: fnRangeName) as AnyObject).rangeValue
+            let attribute = attributes.value(forKey: fnAttributeName)
+            self.addAttributes(attribute! as AnyObject, range : range!)
+        } else if attributes.isKind(of: NSArray.self) {
             for attribute in attributes as! NSArray {
-                let range = attribute.valueForKey(fnRangeName)?.rangeValue
-                let attri = attribute.valueForKey(fnAttributeName)
-                self.addAttributes(attri!, range : range!)
+                let range = ((attribute as AnyObject).value(forKey: fnRangeName) as AnyObject).rangeValue
+                let attri = (attribute as AnyObject).value(forKey: fnAttributeName)
+                self.addAttributes(attri! as AnyObject, range : range!)
             }
         }
     }
     
-    private func addAttributes(attributes: AnyObject, range: NSRange) -> Void {
+    fileprivate func addAttributes(_ attributes: AnyObject, range: NSRange) -> Void {
         let attributedStr = NSMutableAttributedString(attributedString : self.attributedText!)
         if range.location + range.length < attributedStr.length  {
             attributedStr.addAttributes(attributes as! [String : AnyObject], range: range)
@@ -422,31 +422,32 @@ public extension UILabel {
      
      - returns: The multiple of the number.
      */
-    private func getTheMultipleFromNumber(number: NSNumber, formatString: String?) -> Int {
-        var newNumber = number;
-        if formatString != nil && formatString!.rangeOfString("%@") == nil {
+    fileprivate func getTheMultipleFromNumber(_ number: NSNumber, formatString: String?) -> Int {
+        var newNumber = number
+        let point:Character = "."
+        if formatString != nil && formatString!.range(of: "%@") == nil {
             
-            if formatString!.rangeOfString("%d") != nil {
+            if formatString!.range(of: "%d") != nil {
                 return 0;
             }
             
             let fStr: String = self.regexNumberFormat(formatString!)
-            let formatNumberStr: String = String(fStr, number.floatValue)
-            if formatNumberStr.rangeOfString(".") != nil {
-                let fn_range = formatNumberStr.rangeOfString(".")
-                let index = fn_range?.startIndex.advancedBy(1)
-                let subStr: String = formatNumberStr.substringFromIndex(index!)
+            let formatNumberStr: String = String.init(format: fStr, number.floatValue)
+            if (formatNumberStr.characters.index(of: point)) != nil
+            {
+                let idx = formatNumberStr.characters.index(of: point);
+                let subStr: String = formatNumberStr.substring(from: idx!)
                 let length: Int = subStr.characters.count < 6 ? subStr.characters.count : 6
                 let padding = log10f(Float(length))
-                newNumber = (formatNumberStr as NSString).floatValue + padding
+                newNumber = NSNumber(value:(formatNumberStr as NSString).floatValue + padding as Float)
             }
         }
         
         let resultStr = String(format: "%@", newNumber)
-        if resultStr.rangeOfString(".") != nil {
-            let re_range = resultStr.rangeOfString(".")
-            let index = re_range?.startIndex.advancedBy(1)
-            let subStr: String = resultStr.substringFromIndex(index!)
+        if (resultStr.characters.index(of: point)) != nil
+        {
+            let idx = resultStr.characters.index(of: point);
+            let subStr: String = resultStr.substring(from: idx!)
             // Max Multiple is 6
             let length : Int = subStr.characters.count >= 6 ? 6 : subStr.characters.count
             return Int(powf(10, Float(length)))
@@ -461,14 +462,14 @@ public extension UILabel {
      
      - returns: The new string-format String.
      */
-    private func regexNumberFormat(format: String) -> String {
+    fileprivate func regexNumberFormat(_ format: String) -> String {
         let patternStr : String = "^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
         do {
-            let regex : NSRegularExpression =  try NSRegularExpression(pattern: patternStr, options: NSRegularExpressionOptions.CaseInsensitive)
+            let regex : NSRegularExpression =  try NSRegularExpression(pattern: patternStr, options: NSRegularExpression.Options.caseInsensitive)
             let fRange = NSMakeRange(0, format.characters.count)
-            let match = regex.firstMatchInString(format, options: NSMatchingOptions.ReportProgress, range: fRange)
+            let match = regex.firstMatch(in: format, options: NSRegularExpression.MatchingOptions.reportProgress, range: fRange)
             if (match != nil) {
-                let result: NSString = (format as NSString).substringWithRange(match!.range);
+                let result: NSString = (format as NSString).substring(with: match!.range) as NSString;
                 return result as String;
             }
         } catch {
@@ -490,29 +491,29 @@ public extension UILabel {
         }
     }
     
-    private func set_fnNumber(number: NSNumber) {
+    fileprivate func set_fnNumber(_ number: NSNumber) {
         objc_setAssociatedObject(self, &flickerNumberKey, number, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
     /// The number-formatter style, it's private varibale. Extend property use the runtime feature.
-    public var fn_formatter: NSNumberFormatter? {
+    public var fn_formatter: NumberFormatter? {
         get {
-            return objc_getAssociatedObject(self, &flickerNumberFormatterKey) as? NSNumberFormatter
+            return objc_getAssociatedObject(self, &flickerNumberFormatterKey) as? NumberFormatter
         }
     }
     
-    private func fn_setFormatter(formatter: NSNumberFormatter?) {
+    fileprivate func fn_setFormatter(_ formatter: NumberFormatter?) {
         objc_setAssociatedObject(self, &flickerNumberFormatterKey, formatter, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
     /// The flicker animation time count Timer.
-    public var fn_timer: NSTimer? {
+    public var fn_timer: Timer? {
         get {
-            return objc_getAssociatedObject(self, &flickerTimerKey) as? NSTimer
+            return objc_getAssociatedObject(self, &flickerTimerKey) as? Timer
         }
     }
     
-    private func fn_setTimer(timer: NSTimer) {
+    fileprivate func fn_setTimer(_ timer: Timer) {
         objc_setAssociatedObject(self, &flickerTimerKey, timer, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
@@ -529,11 +530,11 @@ public extension NSDictionary {
      
      - returns: Dictionary of attributed text.
      */
-    public static func fn_dictionary(attribute: NSDictionary, range: NSRange) -> NSDictionary {
+    public static func fn_dictionary(_ attribute: NSDictionary, range: NSRange) -> NSDictionary {
         let dictionary = NSMutableDictionary()
-        dictionary.setObject(attribute , forKey: fnAttributeName)
+        dictionary.setObject(attribute , forKey: fnAttributeName as NSCopying)
         let rangeValue = NSValue(range: range)
-        dictionary.setObject(rangeValue, forKey: fnRangeName)
+        dictionary.setObject(rangeValue, forKey: fnRangeName as NSCopying)
         return dictionary
     }
 }

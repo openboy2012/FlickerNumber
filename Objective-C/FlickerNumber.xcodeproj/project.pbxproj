@@ -190,6 +190,7 @@
 				TargetAttributes = {
 					8E1944F81A7E4138007AFF77 = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = F76XM9QFY9;
 					};
 					8E1945111A7E4138007AFF77 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -370,6 +371,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = F76XM9QFY9;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -385,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = F76XM9QFY9;
 				INFOPLIST_FILE = FlickerNumber/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
