@@ -399,21 +399,16 @@ NS_ASSUME_NONNULL_BEGIN
  *  @return The string-format String.
  */
 - (NSString *)regexNumberFormat:(NSString *)formatString {
-    NSError *regexError = nil;
     NSRegularExpression *regex =
     [NSRegularExpression regularExpressionWithPattern:@"^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
                                               options:NSRegularExpressionCaseInsensitive
-                                                error:&regexError];
-    if (!regexError) {
-        NSTextCheckingResult *match = [regex firstMatchInString:formatString
-                                                        options:0
-                                                          range:NSMakeRange(0, [formatString length])];
-        if (match) {
-            NSString *result = [formatString substringWithRange:match.range];
-            return result;
-        }
-    } else {
-        NSLog(@"error - %@", regexError);
+                                                error:nil];
+    NSTextCheckingResult *match = [regex firstMatchInString:formatString
+                                                    options:0
+                                                      range:NSMakeRange(0, [formatString length])];
+    if (match) {
+        NSString *result = [formatString substringWithRange:match.range];
+        return result;
     }
     return @"%f";
 }

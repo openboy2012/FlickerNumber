@@ -438,15 +438,11 @@ extension UILabel {
      */
     fileprivate func regexNumberFormat(_ format: String) -> String {
         let patternStr = "^%((\\d+.\\d+)|(\\d+).|(.\\d+))f$"
-        do {
-            let regex : NSRegularExpression = try NSRegularExpression(pattern: patternStr, options: .caseInsensitive)
-            let fRange = NSRange(location: 0, length: format.count)
-            if let match = regex.firstMatch(in: format, options: .reportProgress, range: fRange) {
-                let result = (format as NSString).substring(with: match.range)
-                return result
-            }
-        } catch {
-            print("Exception")
+        let regex = try! NSRegularExpression(pattern: patternStr, options: .caseInsensitive)
+        let fRange = NSRange(location: 0, length: format.count)
+        if let match = regex.firstMatch(in: format, options: .reportProgress, range: fRange) {
+            let result = (format as NSString).substring(with: match.range)
+            return result
         }
         return "%f"
     }
