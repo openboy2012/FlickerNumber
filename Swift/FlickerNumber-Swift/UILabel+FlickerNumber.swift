@@ -192,13 +192,6 @@ extension UILabel {
      - parameter attributes:     The attributed string set(a dictionary OR array of dictionaries).
      */
     public func fn_setNumber(_ number: NSNumber, duration: TimeInterval, format: String?, numberFomatter: NumberFormatter?, attributes: Any?) {
-        // check the number type
-        assert(number.isKind(of: NSNumber.self), "Number Type is not matched, exit")
-        if !number.isKind(of: NSNumber.self) {
-            text = String(describing: number)
-            return
-        }
-        
         //limit duration is positive number and it is larger than 0.3
         var durationTime : TimeInterval = Swift.max(fabs(duration), 0.3)
         
