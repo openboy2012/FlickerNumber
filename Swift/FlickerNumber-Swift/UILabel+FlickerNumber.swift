@@ -18,7 +18,7 @@ private let attributeName = "attribute"
 private let formatName = "format"
 private let frequency = 1.0/30.0
 
-public extension UILabel {
+extension UILabel {
      /**
      Flicker a number without other effects.
      
@@ -199,8 +199,8 @@ public extension UILabel {
             return
         }
         
-        //limit duration is postive number and it is large than 0.3
-        var durationTime : TimeInterval = fabs(duration) < 0.3 ? 0.3 : fabs(duration)
+        //limit duration is positive number and it is larger than 0.3
+        var durationTime : TimeInterval = Swift.max(fabs(duration), 0.3)
         
         self.fn_timer?.invalidate()
         
@@ -456,7 +456,7 @@ private var flickerNumberKey : Void?
 private var flickerNumberFormatterKey : Void?
 private var flickerTimerKey : Void?
 
-public extension UILabel {
+extension UILabel {
     /// The intermediate number, it's private variable. Extend property use the runtime feature.
     public var fn_number: NSNumber? {
         get {
@@ -494,7 +494,7 @@ public extension UILabel {
 public let fnAttributeName = "attributeKey"
 public let fnRangeName = "rangeKey"
 
-public extension NSDictionary {
+extension NSDictionary {
     /**
      Create an attribute texts dictionary, like the NSAttributedString.
      
@@ -507,8 +507,5 @@ public extension NSDictionary {
         return [fnAttributeName: attribute, fnRangeName: NSValue(range: range)]
     }
 }
-
-
-
 
 
