@@ -189,9 +189,6 @@ NS_ASSUME_NONNULL_BEGIN
     
     [userInfo setObject:@(multiple) forKey:DDMultipleKey];
     [userInfo setObject:@(endNumber) forKey:DDEndNumberKey];
-    if ((endNumber * DDFrequency)/duration < 1) {
-        duration = duration * 0.3;
-    }
     [userInfo setObject:@((endNumber * DDFrequency)/duration) forKey:DDRangeIntegerKey];
     
     if(attrs)

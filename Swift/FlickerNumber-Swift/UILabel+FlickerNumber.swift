@@ -200,7 +200,7 @@ extension UILabel {
         }
         
         //limit duration is positive number and it is larger than 0.3
-        var durationTime : TimeInterval = Swift.max(fabs(duration), 0.3)
+        let durationTime : TimeInterval = Swift.max(fabs(duration), 0.3)
         
         self.fn_timer?.invalidate()
         
@@ -235,9 +235,6 @@ extension UILabel {
         userDict.setValue(multiple, forKey: multipleName)
         userDict.setValue(NSNumber(value: endNumber), forKey: endNumberName)
         
-        if (Double(endNumber) * frequency)/durationTime < 1.0 {
-            durationTime = durationTime * 0.3
-        }
         let rangeNumber = (Double(endNumber) * frequency)/durationTime
         userDict.setValue(NSNumber(value: rangeNumber), forKey: rangeIntegerName)
         
