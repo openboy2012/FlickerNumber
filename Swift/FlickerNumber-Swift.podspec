@@ -8,7 +8,6 @@ s.author   = { 'DeJohn Dong' => 'dongjia_9251@126.com' }
 s.source   = { :git => 'https://github.com/openboy2012/FlickerNumber.git', :tag => s.version.to_s}
 s.ios.deployment_target = '8.0'
 s.source_files = 'FlickerNumber-Swift/FlickerNumber-Swift/UILabel+FlickerNumber.swift'
-s.requires_arc = true
 s.frameworks = 'UIKit'
 end
 
